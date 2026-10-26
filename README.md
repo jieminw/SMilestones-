@@ -8,7 +8,7 @@ Built with Vue 3, TypeScript, Vite and Tailwind v4. Supabase (Postgres, Auth, ro
 
 ![Home](docs/screenshots/home.jpg)
 
-## What it does
+## What it does?
 
 | | |
 |---|---|
