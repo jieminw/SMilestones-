@@ -1,5 +1,5 @@
 # SMilestones
-
+Done by Wong Jie Min
 A shared savings and planning workspace for Singapore couples. It plans the big milestones (a BTO flat, the wedding, the renovation, trips) around real HDB and CPF numbers, and keeps both partners honest with each other.
 
 Built with Vue 3, TypeScript, Vite and Tailwind v4. Supabase (Postgres, Auth, row-level security) sits behind Vercel functions. The full app also runs with no backend at all, as a demo that stores its data in the browser.
