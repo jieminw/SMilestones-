@@ -51,7 +51,7 @@ function openDemo(path = "/home") {
     <header class="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-5 md:px-8 md:py-7">
       <div class="flex items-center gap-2.5">
         <Logo :size="32" />
-        <span class="font-serif text-[23px]">SMilestones</span>
+        <span class="font-serif text-[23px]"><span class="text-who-a">S</span>Milestones</span>
       </div>
       <nav class="hidden items-center gap-9 text-[14.5px] text-ink/70 md:flex">
         <a href="#product" class="transition-colors hover:text-ink">Product</a>
@@ -74,7 +74,7 @@ function openDemo(path = "/home") {
         </p>
         <div class="flex items-center gap-4">
           <button type="button" class="inline-flex h-14 cursor-pointer items-center gap-2 rounded-[4px] bg-ink px-9 text-[16px] font-medium text-white transition-colors hover:bg-navy-2" @click="openDemo()">Open the demo <ArrowUpRight :size="17" /></button>
-          <RouterLink v-if="cloudEnabled" to="/login?signup=1" class="inline-flex h-14 items-center rounded-[4px] border border-ink/30 px-9 text-[16px] font-medium transition-colors hover:bg-white/60">Create an account</RouterLink>
+          <RouterLink v-if="cloudEnabled" to="/login?signup=1" class="inline-flex h-14 items-center rounded-[4px] border border-ink/30 px-9 text-[16px] font-medium transition-colors hover:bg-white/10">Create an account</RouterLink>
         </div>
       </div>
     </section>
@@ -83,7 +83,7 @@ function openDemo(path = "/home") {
     <section id="product" class="relative mx-auto mt-12 max-w-[1280px] px-5 pb-16 md:mt-20 md:px-8 md:pb-52">
       <div v-reveal class="relative h-[320px] overflow-hidden rounded-[6px] md:h-[520px] md:rounded-[6px]">
         <img :src="IMG.hero" alt="A modern home at dusk" class="size-full object-cover sepia-[0.3] saturate-[0.85]" />
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-ink/10" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/10" />
       </div>
 
       <!-- the app, drawn from the same pieces as the real one -->
@@ -94,14 +94,14 @@ function openDemo(path = "/home") {
             <div class="flex gap-1.5"><span v-for="n in 3" :key="n" class="size-2 rounded-full bg-sand" /></div>
           </div>
           <div class="grid grid-cols-[1.25fr_1fr_1fr] gap-5">
-            <div class="rounded-[6px] bg-ink p-6 text-white">
+            <div class="rounded-[6px] bg-navy p-6 text-white">
               <p class="text-[10.5px] font-medium tracking-[0.18em] text-white/55 uppercase">Total saved together</p>
               <p class="font-serif tabular mt-2 text-[44px] leading-none">{{ fmt(total) }}</p>
               <div class="mt-5 flex h-2 overflow-hidden rounded-full bg-white/15"><div class="h-full w-[46%] bg-who-a" /><div class="h-full w-[32%] bg-[#8fa0b3]" /></div>
               <div class="mt-3 flex gap-4 text-[11.5px] text-white/65"><span class="flex items-center gap-1.5"><span class="size-1.5 rounded-full bg-who-a" />Dephany $4,180</span><span class="flex items-center gap-1.5"><span class="size-1.5 rounded-full bg-[#8fa0b3]" />Julian $3,590</span></div>
             </div>
             <div v-for="g in [{ img: IMG.trip, t: 'Graduation trip', a: '$1,750', p: 35, x: 20, y: 15 }, { img: IMG.keys, t: 'Our BTO', a: '$5,220', p: 7, x: 4, y: 3 }]" :key="g.t" class="overflow-hidden rounded-[6px] bg-surface ring-1 ring-ink/10">
-              <div class="relative h-24"><img :src="g.img" alt="" class="size-full object-cover sepia-[0.3]" /><div class="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" /><p class="font-serif absolute bottom-2.5 left-4 text-[17px] text-white">{{ g.t }}</p></div>
+              <div class="relative h-24"><img :src="g.img" alt="" class="size-full object-cover sepia-[0.3]" /><div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" /><p class="font-serif absolute bottom-2.5 left-4 text-[17px] text-white">{{ g.t }}</p></div>
               <div class="p-4"><p class="font-serif tabular text-[22px] leading-none">{{ g.a }}</p><div class="mt-3 flex h-1.5 overflow-hidden rounded-full bg-sand/80"><div class="h-full bg-who-a" :style="{ width: g.x + '%' }" /><div class="h-full bg-who-b" :style="{ width: g.y + '%' }" /></div></div>
             </div>
           </div>
@@ -151,11 +151,11 @@ function openDemo(path = "/home") {
         </article>
 
         <!-- split -->
-        <article v-reveal="100" class="col-span-5 rounded-[6px] bg-ink p-9 text-white">
+        <article v-reveal="100" class="col-span-5 rounded-[6px] bg-navy p-9 text-white">
           <p class="font-mono text-[11px] tracking-[0.14em] text-white/55 uppercase">Monthly split</p>
           <h3 class="font-serif mt-4 text-[34px] leading-[1.08]">Split it the way that feels fair</h3>
           <div class="mt-7 inline-flex gap-1 rounded-full bg-white/10 p-1 text-[13px] font-medium">
-            <span class="rounded-[4px] px-4 py-1.5 text-white/65">Equal</span><span class="rounded-[4px] bg-white px-4 py-1.5 text-ink">By income</span><span class="rounded-[4px] px-4 py-1.5 text-white/65">Custom</span>
+            <span class="rounded-[4px] px-4 py-1.5 text-white/65">Equal</span><span class="rounded-[4px] bg-white px-4 py-1.5 text-[#2b2b2b]">By income</span><span class="rounded-[4px] px-4 py-1.5 text-white/65">Custom</span>
           </div>
           <div class="mt-6 flex h-2.5 overflow-hidden rounded-full bg-white/15"><div class="h-full w-[48%] bg-who-a" /><div class="h-full w-[52%] bg-[#8fa0b3]" /></div>
           <div class="mt-4 grid grid-cols-2 gap-4">
@@ -203,7 +203,7 @@ function openDemo(path = "/home") {
     <section class="mx-auto max-w-[1280px] px-5 pb-20 md:px-8 md:pb-28">
       <div v-reveal class="relative overflow-hidden rounded-[6px] text-white md:rounded-[6px]">
         <img v-for="(src, n) in quoteImages" :key="src" :src="src" alt="" :class="['absolute inset-0 size-full object-cover sepia-[0.35] transition-opacity duration-[1400ms]', n === quoteIdx ? 'opacity-100' : 'opacity-0']" />
-        <div class="absolute inset-0 bg-ink/65" />
+        <div class="absolute inset-0 bg-black/65" />
         <div class="relative px-6 py-16 md:px-16 md:py-28"><QuoteRotator v-model="quoteIdx" tone="dark" class="[&_blockquote]:max-w-[900px] [&_blockquote]:text-[clamp(26px,4vw,44px)] [&_blockquote]:leading-[1.15]" /></div>
       </div>
     </section>
@@ -224,7 +224,7 @@ function openDemo(path = "/home") {
     </section>
 
     <footer class="mx-auto flex max-w-[1280px] flex-col items-start justify-between gap-6 border-t border-ink/15 px-5 py-10 md:flex-row md:gap-12 md:px-8 text-[12.5px] leading-relaxed text-muted">
-      <div class="flex items-center gap-2.5 text-ink"><Logo :size="26" /><span class="font-serif text-[19px]">SMilestones</span></div>
+      <div class="flex items-center gap-2.5 text-ink"><Logo :size="26" /><span class="font-serif text-[19px]"><span class="text-who-a">S</span>Milestones</span></div>
       <p class="max-w-2xl">SMilestones keeps a record of money you set aside in your own accounts. It never holds or moves your money. The numbers are estimates from public HDB and CPF rules, not financial advice, and your HDB Flat Eligibility letter has the final say. Photos from Unsplash.</p>
     </footer>
   </div>

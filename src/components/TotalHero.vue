@@ -69,7 +69,7 @@ const paid = computed(() => {
 </script>
 
 <template>
-  <section class="relative flex flex-col overflow-hidden rounded-[6px] bg-[#06363c] text-[#eaf7f7] shadow-[var(--shadow-pop)]">
+  <section class="relative flex flex-col overflow-hidden rounded-[6px] bg-navy text-[#eaf7f7] shadow-[var(--shadow-pop)]">
     <div class="flex flex-1 flex-col justify-between gap-8 px-8 pt-8 pb-0 md:px-10">
       <!-- the number -->
       <div class="flex items-start justify-between gap-6">

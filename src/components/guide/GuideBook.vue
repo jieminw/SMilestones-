@@ -8,7 +8,7 @@ import GuidePage from "./GuidePage.vue";
 </script>
 
 <template>
-  <FlipBook :count="PAGES.length" :chapters="CHAPTERS" :state="guide" :blocked="directory.open" label="The couples' guide" dialog-label="Couples' guide to getting married in Singapore" backdrop="bg-[#032a2f]/94" light="#f2fafa" dark="#06363c">
+  <FlipBook :count="PAGES.length" :chapters="CHAPTERS" :state="guide" :blocked="directory.open" label="The couples' guide" dialog-label="Couples' guide to getting married in Singapore" backdrop="bg-[#2b0a12]/94" light="#f1f1ef" dark="#4a1420">
     <template #page="{ index, side, compact, go }">
       <GuidePage :page="PAGES[index]" :no="index" :side="side as 'left' | 'right' | 'single'" :compact="compact" class="min-h-full flex-1" @jump="go" />
     </template>

@@ -10,7 +10,7 @@ const TABS = [
 ];
 
 // deep berry and pink, like the guide, with a photo for each list
-const THEME = { page: "#e8f6f6", head: "#06363c", headText: "#f2fafa", accent: "#097c87", soft: "#fca47c", line: "#bee0e0", ink: "#06363c", photos: { firm: "swatches", furniture: "showroom-living" } };
+const THEME = { page: "#ece9e2", head: "#1d1e1f", headText: "#f1f1ef", accent: "#d08a54", soft: "#d99573", line: "#c9c3b8", ink: "#1d1e1f", photos: { firm: "swatches", furniture: "showroom-living" } };
 </script>
 
 <template>

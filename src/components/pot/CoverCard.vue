@@ -38,7 +38,7 @@ async function cancel() {
       <div>
         <div class="text-sm text-muted">{{ mine ? "You offered" : `${firstName(payer)} offered` }} · {{ relativeTime(cover.created_at) }}</div>
         <div class="mt-0.5 text-lg font-semibold">{{ mine ? `Cover ${fmt(cover.amount)} of their share` : `Cover ${fmt(cover.amount)} of your share` }}</div>
-        <div class="mt-1 flex items-center gap-2 text-sm text-muted"><PotIcon :kind="pot.kind" :size="14" /> {{ pot.name }} · {{ fmtMonth(cover.month) }}</div>
+        <div class="mt-1 flex items-center gap-2 text-sm text-muted">{{ pot.name }} · {{ fmtMonth(cover.month) }}</div>
       </div>
       <Badge tone="warn">{{ mine ? "Awaiting partner" : "Needs your answer" }}</Badge>
     </div>

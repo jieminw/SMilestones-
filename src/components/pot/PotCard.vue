@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { ArrowUpRight, CalendarDays } from "lucide-vue-next";
+import { CalendarDays } from "lucide-vue-next";
 import type { CoupleState, Pot } from "@/domain/types";
 import { contributionsBy, firstName, potBalance, potTarget, potTx, profileOf } from "@/domain/selectors";
 import { fmt, pct } from "@/domain/money";
@@ -40,15 +40,11 @@ const bar = computed(() => {
 
 <template>
   <RouterLink :to="`/pots/${pot.id}`" class="group block">
-    <article class="h-full overflow-hidden rounded-[6px] bg-surface shadow-[var(--shadow-card)] transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[var(--shadow-pop)]">
+    <article class="card-paper h-full overflow-hidden rounded-[6px] bg-[#e9e3d8] shadow-[var(--shadow-card)] transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[var(--shadow-pop)]">
       <div class="relative h-44 overflow-hidden">
         <img :src="photo" :alt="pot.name" loading="lazy" class="size-full object-cover sepia-[0.28] saturate-[0.85] transition-transform duration-700 group-hover:scale-105" />
-        <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-ink/20" />
-        <div class="absolute top-3 left-3 flex items-center gap-2">
-          <span class="flex size-8 items-center justify-center rounded-full bg-white/90 text-ink"><PotIcon :kind="pot.kind" :size="16" /></span>
-          <StatusBadge :s="s" :pot="pot" :me-id="meId" />
-        </div>
-        <span class="absolute top-3 right-3 flex size-8 items-center justify-center rounded-full bg-white/0 text-white opacity-0 transition group-hover:bg-white/90 group-hover:text-ink group-hover:opacity-100"><ArrowUpRight :size="16" /></span>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/20" />
+        <div class="absolute top-3 left-3"><StatusBadge :s="s" :pot="pot" :me-id="meId" /></div>
         <div class="absolute inset-x-4 bottom-3 text-white">
           <h3 class="font-serif truncate text-[24px] leading-tight">{{ pot.name }}</h3>
           <p class="truncate text-[12.5px] text-white/80">{{ potLine(s, pot) }}</p>

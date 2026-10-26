@@ -19,7 +19,7 @@ const open = ref<string | null>(props.compact ? null : "lease");
 
 <template>
   <div class="flex flex-col gap-2.5">
-    <div v-for="(st, i) in plan.stages" :key="st.key" class="overflow-hidden rounded-2xl border border-line bg-white/50">
+    <div v-for="(st, i) in plan.stages" :key="st.key" class="overflow-hidden rounded-2xl border border-line bg-white/5">
       <button type="button" class="flex w-full cursor-pointer items-center gap-4 px-4 py-3.5 text-left hover:bg-surface-2/60" @click="open = open === st.key ? null : st.key">
         <span class="flex size-8 shrink-0 items-center justify-center rounded-full bg-peach font-serif text-sm text-terra-2">{{ i + 1 }}</span>
         <span class="min-w-0 flex-1">

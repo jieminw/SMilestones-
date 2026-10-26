@@ -102,14 +102,14 @@ function setOa(who: "A" | "B", v: string) {
           </select>
         </Field>
         <Field v-slot="{ id }" :label="`Flat price · ${fmt(r.price * 100)}`" :hint="`HDB range ${fmtShort(r.flat.minPrice * 100)} – ${fmtShort(r.flat.maxPrice * 100)}; higher floors cost more.`">
-          <input :id="id" type="range" class="w-full accent-[#06363c]" :min="r.flat.minPrice" :max="r.flat.maxPrice" step="1000" :value="r.price" @input="draft.price = Number(($event.target as HTMLInputElement).value)" />
+          <input :id="id" type="range" class="w-full accent-[#1d1e1f]" :min="r.flat.minPrice" :max="r.flat.maxPrice" step="1000" :value="r.price" @input="draft.price = Number(($event.target as HTMLInputElement).value)" />
         </Field>
         <div class="grid grid-cols-2 gap-4">
           <Field v-slot="{ id }" label="Your CPF OA today"><MoneyInput :id="id" :model-value="oaA" @update:model-value="setOa('A', $event)" /></Field>
           <Field v-slot="{ id }" label="Partner's CPF OA today"><MoneyInput :id="id" :model-value="oaB" @update:model-value="setOa('B', $event)" /></Field>
         </div>
         <label class="flex cursor-pointer items-start gap-3 rounded-lg bg-surface-2 p-3.5 text-sm">
-          <input v-model="draft.includeFutureCpf" type="checkbox" class="mt-0.5 size-4 accent-[#06363c]" />
+          <input v-model="draft.includeFutureCpf" type="checkbox" class="mt-0.5 size-4 accent-[#1d1e1f]" />
           <span>
             <span class="font-medium">Include future CPF contributions</span>
             <span class="block text-muted">Adds the OA you will earn from your wages before each payment. CPF only ever pays lease and key costs, never the option fee.</span>

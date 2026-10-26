@@ -42,7 +42,13 @@ async function submit() {
     busy.value = false;
     if (err) return void (error.value = err.message === "Invalid login credentials" ? "That email and password don't match." : err.message);
   }
-  app.reset();
+  // a visitor who tried the demo first is switched over to their real account
+  app.leaveDemo();
+  // signing in worked; now load the workspace from the server, and say so if that fails instead of bouncing back here
+  busy.value = true;
+  const ok = await app.boot();
+  busy.value = false;
+  if (!ok) return void (error.value = "You're signed in, but the app couldn't load your workspace. The server part (the api/ folder) isn't reachable. Run it with \"vercel dev\", or use the deployed site.");
   await router.push("/home");
 }
 
@@ -55,7 +61,7 @@ function tryDemo() {
 <template>
   <div class="flex min-h-screen flex-col items-center justify-center px-6">
     <RouterLink to="/" class="mb-8 flex items-center gap-2.5">
-      <Logo /> <span class="text-lg font-bold">SMilestones</span>
+      <Logo /> <span class="text-lg font-bold"><span class="text-who-a">S</span>Milestones</span>
     </RouterLink>
     <div class="w-full max-w-[420px]">
       <Card v-if="!cloudEnabled" class="p-8 text-center">
@@ -84,6 +90,10 @@ function tryDemo() {
         <p class="mt-6 text-center text-sm text-muted">
           {{ signup ? "Already have an account?" : "New here?" }}
           <button type="button" class="cursor-pointer font-semibold text-terra hover:underline" @click="signup = !signup">{{ signup ? "Sign in" : "Create an account" }}</button>
+        </p>
+        <p class="mt-3 text-center text-sm text-muted">
+          Just looking?
+          <button type="button" class="cursor-pointer font-semibold text-terra hover:underline" @click="tryDemo">Try the demo</button>
         </p>
       </Card>
     </div>

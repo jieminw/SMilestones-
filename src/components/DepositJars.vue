@@ -70,7 +70,7 @@ const toggle = (id: string) => (open.value = open.value === id ? null : id);
                 <path :d="`M26 ${BODY_TOP} H94 a12 12 0 0 1 12 12 V${BODY_BOTTOM - 14} a14 14 0 0 1 -14 14 H28 a14 14 0 0 1 -14 -14 V${BODY_TOP + 12} a12 12 0 0 1 12 -12 Z`" />
               </clipPath>
               <linearGradient :id="`liq-${j.id}`" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" :stop-color="j.who === 'a' ? '#f4895a' : '#66727f'" />
+                <stop offset="0%" :stop-color="j.who === 'a' ? '#e8906a' : '#86aeb4'" />
                 <stop offset="100%" :stop-color="j.who === 'a' ? '#a8543a' : '#3f4a55'" />
               </linearGradient>
             </defs>
@@ -79,8 +79,8 @@ const toggle = (id: string) => (open.value = open.value === id ? null : id);
             <ellipse v-if="j.full" cx="60" cy="98" rx="62" ry="70" :fill="j.who === 'a' ? '#ffdad3' : '#d9dee2'" opacity="0.8" class="jar-glow" />
 
             <!-- lid -->
-            <rect x="30" y="14" width="60" height="14" rx="5" fill="#06363c" />
-            <rect x="36" y="26" width="48" height="8" rx="3" fill="#0a5059" />
+            <rect x="30" y="14" width="60" height="14" rx="5" fill="#9aa5a4" />
+            <rect x="36" y="26" width="48" height="8" rx="3" fill="#737f7e" />
 
             <!-- glass back -->
             <path :d="`M26 ${BODY_TOP} H94 a12 12 0 0 1 12 12 V${BODY_BOTTOM - 14} a14 14 0 0 1 -14 14 H28 a14 14 0 0 1 -14 -14 V${BODY_TOP + 12} a12 12 0 0 1 12 -12 Z`" fill="#ffffff" fill-opacity="0.55" />
@@ -89,26 +89,26 @@ const toggle = (id: string) => (open.value = open.value === id ? null : id);
             <g :clip-path="`url(#clip-${j.id})`">
               <g class="liquid" :style="{ transform: `translateY(${ready ? INNER - (INNER * j.level) / 100 + (j.level <= 0 ? 18 : 0) : INNER + 18}px)` }">
                 <rect x="0" :y="BODY_TOP" width="120" :height="INNER + 20" :fill="`url(#liq-${j.id})`" />
-                <path class="wave wave-a" :d="`M-40 ${BODY_TOP} q10 -6 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 V${BODY_TOP + 12} H-40 Z`" :fill="j.who === 'a' ? '#f4895a' : '#66727f'" />
+                <path class="wave wave-a" :d="`M-40 ${BODY_TOP} q10 -6 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 V${BODY_TOP + 12} H-40 Z`" :fill="j.who === 'a' ? '#e8906a' : '#86aeb4'" />
                 <path class="wave wave-b" :d="`M-40 ${BODY_TOP + 1} q10 6 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 V${BODY_TOP + 12} H-40 Z`" fill="#ffffff" fill-opacity="0.18" />
               </g>
               <!-- coins on the bottom -->
               <g v-for="(c, i) in j.coins" :key="i" :style="{ opacity: ready ? 1 : 0, transition: `opacity .6s ${0.4 + i * 0.07}s` }">
-                <circle :cx="c.x" :cy="c.y" :r="c.r" fill="#f9d779" stroke="#9a7228" stroke-width="1.4" />
+                <circle :cx="c.x" :cy="c.y" :r="c.r" fill="#e3c476" stroke="#9a7228" stroke-width="1.4" />
                 <text :x="c.x" :y="c.y + 3" text-anchor="middle" font-size="8" font-weight="700" fill="#7a5a1c">$</text>
               </g>
             </g>
 
             <!-- the agreed amount: a dashed line near the top -->
-            <line x1="14" :x2="106" :y1="BODY_TOP + 8" :y2="BODY_TOP + 8" stroke="#06363c" stroke-opacity="0.45" stroke-width="1.5" stroke-dasharray="4 4" />
+            <line x1="14" :x2="106" :y1="BODY_TOP + 8" :y2="BODY_TOP + 8" stroke="#c8d0cf" stroke-opacity="0.45" stroke-width="1.5" stroke-dasharray="4 4" />
 
             <!-- glass front -->
-            <path :d="`M26 ${BODY_TOP} H94 a12 12 0 0 1 12 12 V${BODY_BOTTOM - 14} a14 14 0 0 1 -14 14 H28 a14 14 0 0 1 -14 -14 V${BODY_TOP + 12} a12 12 0 0 1 12 -12 Z`" fill="none" stroke="#06363c" stroke-width="2.5" />
+            <path :d="`M26 ${BODY_TOP} H94 a12 12 0 0 1 12 12 V${BODY_BOTTOM - 14} a14 14 0 0 1 -14 14 H28 a14 14 0 0 1 -14 -14 V${BODY_TOP + 12} a12 12 0 0 1 12 -12 Z`" fill="none" stroke="#c8d0cf" stroke-width="2.5" />
             <path d="M24 56 V120" stroke="#ffffff" stroke-opacity="0.75" stroke-width="4" stroke-linecap="round" />
 
             <!-- a coin drops in on hover -->
             <g class="drop-coin">
-              <circle cx="60" cy="0" r="9" fill="#f9d779" stroke="#9a7228" stroke-width="1.6" />
+              <circle cx="60" cy="0" r="9" fill="#e3c476" stroke="#9a7228" stroke-width="1.6" />
               <text x="60" y="3.5" text-anchor="middle" font-size="10" font-weight="700" fill="#7a5a1c">$</text>
             </g>
           </svg>

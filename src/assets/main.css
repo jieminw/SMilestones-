@@ -1,42 +1,42 @@
 @import "tailwindcss";
 
 /*
- * SMilestones look: the "tropical jade sunrise" palette (#FCA47C, #F9D779, #23CED9, #A1CCA6, #097C87) and tints and shades of it.
+ * SMilestones look: charcoal with warm copper, gold and soft coral, plus a dusty teal, and tints and shades of them.
  * Each partner has one colour (orange and teal) that is used the same way wherever the two of them are compared.
  */
 @theme {
-  --color-cream: #e8f6f6;
-  --color-cream-2: #cfe8e7;
-  --color-surface: #f4fbfb;
-  --color-surface-2: #daeeee;
-  --color-line: #bee0e0;
-  --color-ink: #06363c;
-  --color-navy: #06363c;
-  --color-navy-2: #0a5059;
-  --color-muted: #48767c;
-  --color-faint: #7aa3a8;
+  --color-cream: #2b2b2b;
+  --color-cream-2: #333333;
+  --color-surface: #363637;
+  --color-surface-2: #444546;
+  --color-line: #55595a;
+  --color-ink: #eef4f3;
+  --color-navy: #1d1e1f;
+  --color-navy-2: #2f3132;
+  --color-muted: #b4bfbe;
+  --color-faint: #8b9897;
 
   /* brand tan: highlights and the active state */
-  --color-lime: #f9d779;
-  --color-lime-2: #fca47c;
-  --color-terra: #097c87;
-  --color-terra-2: #06606a;
-  --color-peach: #fdd9c6;
-  --color-peach-2: #f2fafa;
-  --color-sand: #dcefee;
-  --color-gold: #c28a4a;
+  --color-lime: #e3c476;
+  --color-lime-2: #d99573;
+  --color-terra: #d08a54;
+  --color-terra-2: #b8743f;
+  --color-peach: #4d4139;
+  --color-peach-2: #3d3f40;
+  --color-sand: #4b4d4e;
+  --color-gold: #c9a15a;
 
-  --color-who-a: #f4895a;
-  --color-who-b: #097c87;
-  --color-who-a-soft: #fee3d6;
-  --color-who-b-soft: #cdebee;
+  --color-who-a: #e8906a;
+  --color-who-b: #86aeb4;
+  --color-who-a-soft: #4a3a31;
+  --color-who-b-soft: #2f3d40;
 
-  --color-ok: #5a7a55;
-  --color-ok-soft: #dce6d2;
-  --color-warn: #94651b;
-  --color-warn-soft: #f0e0bb;
-  --color-bad: #a3453a;
-  --color-bad-soft: #f1d8d2;
+  --color-ok: #a9d1a3;
+  --color-ok-soft: #2f4230;
+  --color-warn: #f0c674;
+  --color-warn-soft: #4b3d1d;
+  --color-bad: #f0968a;
+  --color-bad-soft: #4d2a26;
   --color-white: #ffffff;
 
   --radius-md: 3px;
@@ -50,9 +50,9 @@
   --font-serif: "Fraunces Variable", "Iowan Old Style", Georgia, serif;
   --font-mono: "Geist Mono Variable", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
-  --shadow-card: 0 0 0 1px rgb(6 54 60 / 0.16);
-  --shadow-pop: 0 0 0 1px rgb(6 54 60 / 0.5), 0 14px 30px -12px rgb(6 54 60 / 0.35);
-  --shadow-press: 0 0 0 1px rgb(6 54 60 / 0.3);
+  --shadow-card: 0 0 0 1px rgb(255 255 255 / 0.1);
+  --shadow-pop: 0 0 0 1px rgb(255 255 255 / 0.25), 0 14px 30px -12px rgb(0 0 0 / 0.6);
+  --shadow-press: 0 0 0 1px rgb(255 255 255 / 0.2);
 }
 
 /* Titles and big numbers: Fraunces, a soft, warm serif with a little character. */
@@ -77,6 +77,28 @@
   font-style: italic;
 }
 
+/* A warm stone card on the charcoal page: inside it the text colours flip back to dark. */
+.card-paper {
+  --color-ink: #29272a;
+  --color-muted: #675f55;
+  --color-faint: #958c7f;
+  --color-line: #d6cdbd;
+  --color-surface-2: #ddd5c6;
+  --color-sand: #d8cfbd;
+  --color-ok: #3f6b3c;
+  --shadow-card: 0 0 0 1px rgb(0 0 0 / 0.06);
+  color: var(--color-ink);
+}
+
+/* Light-filled "ink" buttons and chips keep dark text on the charcoal theme. */
+.bg-ink.text-white,
+.bg-ink .text-white,
+.bg-terra.text-white,
+.bg-terra .text-white,
+.bg-lime.text-white {
+  color: #2b2b2b;
+}
+
 /* Paper grain: a barely-there noise over everything, which takes the digital flatness off the colour. */
 body::before {
   content: "";
@@ -85,7 +107,7 @@ body::before {
   z-index: 200;
   pointer-events: none;
   opacity: 0.5;
-  mix-blend-mode: multiply;
+  mix-blend-mode: soft-light;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.16  0 0 0 0 0.12  0 0 0 0 0.09  0 0 0 0.09 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
@@ -128,8 +150,8 @@ body::before {
 }
 
 html {
-  color-scheme: light;
-  background-color: var(--color-cream);
+  color-scheme: dark;
+  background: var(--color-cream) url("/images/bg-charcoal.jpg") top left / 948px auto repeat;
   color: var(--color-ink);
 }
 
@@ -145,7 +167,26 @@ body {
 
 ::selection {
   background: var(--color-lime);
-  color: var(--color-ink);
+  color: #2b2b2b;
+}
+
+input[type="range"] {
+  accent-color: var(--color-who-a);
+}
+
+/* Dropdowns: the open list is drawn by the browser, so give it a solid dark background or the light text disappears. */
+select {
+  color-scheme: dark;
+  cursor: pointer;
+  background-color: #34373a;
+}
+select option,
+select optgroup {
+  background-color: #2b2b2b;
+  color: #eef4f3;
+}
+select option:checked {
+  background-color: #4a4d50;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {

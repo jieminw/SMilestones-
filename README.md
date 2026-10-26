@@ -1,48 +1,84 @@
 # SMilestones
 
-A shared savings and planning workspace for Singapore couples: BTO flat, wedding, renovation and trips.
-Vue 3 + Vite + Tailwind v4, with Supabase (Postgres, Auth) behind Vercel functions in `api/`.
+A shared savings and planning workspace for Singapore couples. It plans the big milestones (a BTO flat, the wedding, the renovation, trips) around real HDB and CPF numbers, and keeps both partners honest with each other.
+
+Built with Vue 3, TypeScript, Vite and Tailwind v4. Supabase (Postgres, Auth, row-level security) sits behind Vercel functions. The full app also runs with no backend at all, as a demo that stores its data in the browser.
+
+<!-- Live demo: add the deployed link here once it is on Vercel. -->
+
+![Home](docs/screenshots/home.jpg)
+
+## What it does
+
+| | |
+|---|---|
+| **BTO Navigator** | Real prices and wait times from HDB's Feb and Jun 2026 launches, on a map drawn from URA's planning-area boundaries. Two ways in: *I've saved up* shows which launches you could afford; *I'm just starting* picks a town and works out when your saving would get you there. |
+| **Finances** | The three BTO payments (option fee, signing, keys) with CPF and grants applied, a loan estimate, and the exact cash to save by each date. |
+| **Wallet and goals** | Shared goals with a monthly split both partners agree. Every balance is derived from a ledger. |
+| **Timeline** | Pools what you have agreed to save against what falls due each month, and flags crunch months with two ways to fix them. |
+| **Approvals** | Withdrawals and transfers between goals need the other partner to approve. |
+| **Wedding and renovation** | Researched guides and directories of 169 and 71 vendors, plus budgets that feed straight into a savings goal. |
+| **Fluffy** | A shared pet that grows only when you actually save. |
+
+![BTO Navigator](docs/screenshots/explore-ready.jpg)
+
+## Engineering notes
+
+**One engine, two runtimes.** Every write is a command run by a single pure function, `src/domain/engine.ts`. The browser runs it for the demo (state in localStorage). The server runs the same code for cloud mode and commits each command in one transaction with optimistic locking. Nothing is implemented twice.
+
+**Money is integer cents.** Balances, progress, streaks and the timeline are derived from the ledger and never stored, so editing or voiding a contribution fixes everything downstream.
+
+**Affordability is judged per payment, not against a lump sum.** The cost of a flat falls due in three stages, years apart, while savings and CPF keep growing. `src/domain/btoReadiness.ts` checks the savings the couple *will* have at each due date. An earlier version asked whether they could pay the $2,000 option fee today, to the dollar, which made $1,999 fail and $2,000 pass. The fix, and a regression test for it, is in the history.
+
+**Rates are named constants with a source.** CPF contribution rates, wage ceilings, HDB loan terms and grants each carry an as-of date and a link, so they are easy to re-check every January.
+
+**Security is enforced twice.** The engine refuses what a user may not do, and Postgres row-level security backs it up. A parent can be invited to one goal as a contributor, and the tests prove they cannot read other goals, requests, splits or incomes, or approve anything.
+
+**Bank statements never leave the browser.** Reconciliation parses the CSV locally and stores only a `verified` flag on matched contributions.
+
+![Finances](docs/screenshots/finances.jpg)
+
+## Run it
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173, then "Enter sample workspace" (no setup needed)
-npm test           # domain, engine and Postgres (PGlite) tests
+npm run dev          # http://localhost:5173, then try the demo (no setup needed)
+npm test             # 156 tests: domain, engine, CPF, BTO, and the schema on Postgres (PGlite)
 npm run typecheck
 npm run build
 ```
 
-Cloud mode needs the keys in `.env.example` and the migrations in `supabase/migrations/` applied in order (0001 to 0008). Use `vercel dev` to run the API locally.
+Cloud mode needs the keys in `.env.example` and the migrations in `supabase/migrations/` applied in order (0001 to 0009). `vercel dev` runs the API locally.
 
-## How it works
+## Project layout
 
-Every write is a command run by one pure function, the domain engine (`src/domain/engine.ts`). The same engine runs in the browser for the demo (localStorage) and on the server for cloud mode (committed in one transaction with optimistic locking). Money is integer cents. Balances, progress, streaks and the timeline are derived from the ledger and never stored. Anything that changes over time (CPF rates, ceilings) is a named constant with an as-of date and a source link.
+```
+src/domain/      pure logic: engine, BTO plan, CPF, readiness, timeline, covers, reconcile
+src/data/        BTO projects, directories, guides, planning-area map shapes, demo seed
+src/components/  UI, grouped by feature (navigator, pot, guide, art)
+src/stores/      app state (demo or cloud) and guide state
+api/             Vercel functions: command, snapshot, invite, join, profile
+supabase/        migrations and row-level security
+tests/           one file per area; pg.test.ts runs the real migrations in-process
+```
 
-## Features added in this round
+## Data sources and credits
 
-**1. Future CPF OA contributions.** `src/domain/cpf.ts` projects each partner's OA (wage, age, balance) up to every stage's due date, and `buildBtoPlan` uses what has accumulated by then, less what earlier stages took. The option fee is never paid from CPF. Toggle: Finances tab, "Include future CPF contributions". Sources, as of Jan 2026: 37% total contribution for ages 55 and below and the $8,000 Ordinary Wage ceiling ([cpf.gov.sg](https://www.cpf.gov.sg/service/article/what-is-the-ordinary-wage-ow-ceiling)); OA allocation by age (0.6217 / 0.5677 / 0.5136 / 0.4055 of each contribution) from [CPF allocation rates](https://www.cpf.gov.sg/content/dam/web/employer/employer-obligations/documents/jan2027cpfallocationrates.pdf); OA interest 2.5% a year. Simplifications are listed at the top of the file (flat wages, monthly compounding on the opening balance, no bonuses). Estimate only.
+- **BTO prices and wait times:** HDB sales-launch annexes, [Feb 2026](https://www.hdb.gov.sg/-/media/hdb-pulse/news/2026/hdb-launches-9012-flats-in-february-2026-bto-and-sbf-exercises/Annex-A.pdf) and [Jun 2026](https://www.hdb.gov.sg/-/media/hdb-pulse/news/2026/20260617-HDB-Launches-6952-Flats-Across-7-Projects-in-June-2026-BTO-Sales-Exercise/Annex-A.pdf), transcribed by hand into `src/data`.
+- **Project images:** artist's impressions published by HDB, shown with an "Artist's impression · HDB" label. They belong to HDB and are used here for illustration.
+- **Map:** URA Master Plan 2019 Planning Area Boundary (No Sea), from [data.gov.sg](https://data.gov.sg), under the Singapore Open Data Licence. Simplified and projected for the page.
+- **CPF:** contribution and allocation rates from [cpf.gov.sg](https://www.cpf.gov.sg), as of Jan 2026.
+- **Other photography:** stock images in `public/images`. Check their licences before publishing the project more widely.
 
-**2. Crunch-month detector.** `src/domain/timeline.ts` pools agreed monthly splits against what falls due each month. `/timeline` charts 36 months, highlights crunch months and offers two fixes (save more, or move a deadline). Home shows a warning when one falls in the next 12 months.
+## Assumptions and limits
 
-**3. Ang bao offset.** Wedding pots get a "Guests & ang bao" panel (tables, price per table, guests per table, average or per-group ang bao). Net banquet cost = tables x price - expected ang bao, never below $0, and the savings target uses it. The cash needed before the wedding is shown separately. Starting figures are examples. Stored as JSON on the pot (`0003_wedding.sql`).
+- Everything is an **estimate**, not financial advice. A HDB Flat Eligibility letter is the final word on grants and loans.
+- Planning ahead assumes BTO prices rise **3% a year**. That is a placeholder chosen for illustration, not an HDB figure (`ASSUMED_PRICE_GROWTH` in `btoReadiness.ts`).
+- For a launch that is open, the affordability check allows **3 months** of saving between applying and choosing a flat (`APPLY_TO_SELECTION_MONTHS`). Also an assumption.
+- The CPF projection keeps wages flat and ignores bonuses. Its simplifications are listed at the top of `src/domain/cpf.ts`.
+- BTO data stops at the Jun 2026 exercise. The Nov 2026 launch is shown as "next" with no prices, because HDB has not published them.
+- The demo couple is placeholder data.
 
-**4. "Didn't get the flat".** `bto_applications` (`0004`) with history and results on the BTO pot. When the latest ballot is unsuccessful, "Retarget to next exercise" opens the Navigator, rebuilds stages and dates from the chosen project and keeps every contribution, showing the monthly target before and after. Refused while a withdrawal or transfer is pending. No prices are invented for unreleased projects.
+## Licence
 
-**5. Cover me.** One partner offers to cover the other's missed share, the other accepts, and the payback is spread over 1 to 6 months (default 3). The covered partner's expected share rises by amount / months, repayment is measured from extra contributions, and "Who's ahead" shows on Home. `covers` and `transactions.covering` (`0005`).
-
-**6. Parents as limited contributors.** `pot_members` and `pot_invites` (`0006`). A partner creates a pot invite code; the parent signs up, enters it and gets one page (`/gift`) for that pot only. Enforced in the engine (a contributor may only log a gift to their pot) and in RLS (they read that pot's rows only, no other pots, requests, splits, partner profiles or incomes, and cannot write). Tests prove a contributor cannot read another pot or approve a request. The demo has a third "view as" button, Mum.
-
-**7. Bank statement reconciliation.** Wallet, "Check against bank statement". The CSV is parsed in the browser and never uploaded or stored. You map the columns once (a layout can be remembered by name, for example DBS/POSB, OCBC or UOB); contributions are matched one-to-one to debits of the same amount within 3 days. Only `verified_at` (`0007`) is stored.
-
-**8. Monthly money date.** `/money-date`, once a month, four steps (what we saved, waiting on us, one decision, Fluffy). Both partners mark it done (`money_dates`, `0008`). Doing it together adds bonus XP and extends the pet's streak. Home shows "Money date ready".
-
-## Demo data
-
-The sample couple, Dephany and Julian, has a BTO pot with an application history, a trip with a cover payback, a wedding with a guest and ang bao plan and a $5,000 gift from Mum, a Jun 2027 crunch month, some contributions already verified, and last month's money date done. All of it is placeholder data.
-
-## Not done yet
-
-- Screenshots for this README were not captured.
-- The Vue app has not been deployed; the `api/` functions are untested outside the Postgres tests.
-- The CPF projection uses published rates as of Jan 2026. Re-check them each January.
-
-Estimates only, not financial advice. Your HDB Flat Eligibility letter is the final word on grants and loans.
+MIT, see [LICENSE](LICENSE).

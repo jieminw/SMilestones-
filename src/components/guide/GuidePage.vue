@@ -89,53 +89,53 @@ const fold = computed(() => (props.side === "left" ? "right-0 bg-gradient-to-l" 
 
 const NAME = "text-[11.5px] leading-snug font-medium tracking-[0.14em] uppercase";
 const SUB = "mt-0.5 text-[11px] leading-snug text-[#48767c]";
-const LINK = "mx-auto cursor-pointer text-[9.5px] tracking-[0.3em] text-[#06606a] uppercase underline decoration-[#06606a]/40 underline-offset-4 hover:decoration-[#06606a]";
-const BTN = "mx-auto mt-auto flex w-full cursor-pointer items-center justify-center gap-2 bg-[#06606a] px-4 py-2.5 text-[10px] font-medium tracking-[0.3em] text-[#f2fafa] uppercase transition-colors hover:bg-[#06363c]";
-const ROW = "border-t border-[#06606a]/15 py-2 text-center first:border-t-0";
+const LINK = "mx-auto cursor-pointer text-[9.5px] tracking-[0.3em] text-[#7a2234] uppercase underline decoration-[#7a2234]/40 underline-offset-4 hover:decoration-[#7a2234]";
+const BTN = "mx-auto mt-auto flex w-full cursor-pointer items-center justify-center gap-2 bg-[#7a2234] px-4 py-2.5 text-[10px] font-medium tracking-[0.3em] text-[#f1f1ef] uppercase transition-colors hover:bg-[#1d1e1f]";
+const ROW = "border-t border-[#7a2234]/15 py-2 text-center first:border-t-0";
 </script>
 
 <template>
-  <article :class="cx('relative flex h-full flex-col overflow-hidden', dark ? 'bg-[#06606a] text-[#f2fafa]' : 'bg-[#e8f6f6] text-[#06363c]', page.kind === 'back' && 'bg-[#06363c]', compact ? 'px-9 pt-9 pb-5' : 'px-5 pt-7 pb-5')">
+  <article :class="cx('relative flex h-full flex-col overflow-hidden', dark ? 'bg-[#7a2234] text-[#f1f1ef]' : 'bg-[#ece9e2] text-[#1d1e1f]', page.kind === 'back' && 'bg-[#1d1e1f]', compact ? 'px-9 pt-9 pb-5' : 'px-5 pt-7 pb-5')">
     <!-- the fold: a soft shadow along the spine -->
     <span v-if="side !== 'single'" :class="cx('pointer-events-none absolute inset-y-0 z-20 w-8 to-transparent', fold, dark ? 'from-black/40' : 'from-black/12')" />
 
     <!-- cover -->
     <div v-if="page.kind === 'cover'" class="relative z-10 flex min-h-0 flex-1 flex-col">
       <img src="/images/wedding.jpg" alt="" class="absolute -inset-x-9 -top-9 h-[60%] w-[calc(100%+72px)] max-w-none object-cover" />
-      <div class="absolute -inset-x-9 -top-9 h-[60%] bg-gradient-to-b from-transparent via-[#06606a]/35 to-[#06606a]" />
-      <span class="pointer-events-none absolute -inset-x-4 -top-4 -bottom-1 border border-[#f2fafa]/25" />
+      <div class="absolute -inset-x-9 -top-9 h-[60%] bg-gradient-to-b from-transparent via-[#7a2234]/35 to-[#7a2234]" />
+      <span class="pointer-events-none absolute -inset-x-4 -top-4 -bottom-1 border border-[#f1f1ef]/25" />
       <div class="relative mt-auto text-center">
-        <p class="text-[9.5px] tracking-[0.55em] text-[#f2fafa]/65 uppercase">SMilestones</p>
+        <p class="text-[9.5px] tracking-[0.55em] text-[#f1f1ef]/65 uppercase">SMilestones</p>
         <h2 class="mt-5 text-[30px] leading-[1.35] font-extralight tracking-[0.22em] uppercase">Getting married<br />in Singapore</h2>
-        <div class="mx-auto mt-5 h-px w-12 bg-[#f2fafa]/60" />
-        <p class="mx-auto mt-5 max-w-[30ch] text-[11.5px] leading-relaxed tracking-[0.04em] text-[#f2fafa]/70">A guide for couples planning for the first time: where to hold it, who to book, and what to ask.</p>
-        <p class="mt-8 text-[9px] tracking-[0.45em] text-[#f2fafa]/45 uppercase">The couples' guide · 2026</p>
+        <div class="mx-auto mt-5 h-px w-12 bg-[#f1f1ef]/60" />
+        <p class="mx-auto mt-5 max-w-[30ch] text-[11.5px] leading-relaxed tracking-[0.04em] text-[#f1f1ef]/70">A guide for couples planning for the first time: where to hold it, who to book, and what to ask.</p>
+        <p class="mt-8 text-[9px] tracking-[0.45em] text-[#f1f1ef]/45 uppercase">The couples' guide · 2026</p>
       </div>
     </div>
 
     <!-- back cover -->
     <div v-else-if="page.kind === 'back'" class="relative z-10 m-auto text-center">
-      <div class="mx-auto h-px w-10 bg-[#f2fafa]/50" />
+      <div class="mx-auto h-px w-10 bg-[#f1f1ef]/50" />
       <p class="mt-6 text-[13px] font-light tracking-[0.5em] uppercase">SMilestones</p>
-      <p class="mx-auto mt-5 max-w-[26ch] text-[11px] leading-relaxed tracking-[0.04em] text-[#f2fafa]/55">Save enough for one milestone and the next one opens.</p>
-      <div class="mx-auto mt-6 h-px w-10 bg-[#f2fafa]/50" />
+      <p class="mx-auto mt-5 max-w-[26ch] text-[11px] leading-relaxed tracking-[0.04em] text-[#f1f1ef]/55">Save enough for one milestone and the next one opens.</p>
+      <div class="mx-auto mt-6 h-px w-10 bg-[#f1f1ef]/50" />
     </div>
 
     <!-- every inside page: the same framed card -->
     <template v-else>
-      <div class="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden border border-[#06606a]/60 bg-[#f5f9fc] px-6 pt-6 pb-4 outline outline-1 outline-offset-[5px] outline-[#06606a]/30">
+      <div class="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden border border-[#7a2234]/60 bg-[#f4f2ee] px-6 pt-6 pb-4 outline outline-1 outline-offset-[5px] outline-[#7a2234]/30">
         <img v-if="photo" :src="photo[0]" alt="" class="-mx-6 -mt-6 mb-4 max-w-none object-cover" :class="compact ? 'h-[72px]' : 'h-[110px]'" :style="{ width: 'calc(100% + 48px)', objectPosition: photo[1] }" />
 
-        <p class="text-center text-[9.5px] tracking-[0.5em] text-[#06606a] uppercase">{{ kicker }}</p>
+        <p class="text-center text-[9.5px] tracking-[0.5em] text-[#7a2234] uppercase">{{ kicker }}</p>
         <h2 class="mt-2.5 text-center text-[19px] leading-[1.3] font-extralight tracking-[0.2em] uppercase">{{ title }}</h2>
-        <div class="mx-auto mt-3 h-px w-10 bg-[#06606a]" />
+        <div class="mx-auto mt-3 h-px w-10 bg-[#7a2234]" />
         <p v-if="intro" class="mx-auto mt-3 max-w-[38ch] text-center text-[11px] leading-relaxed text-[#48767c] italic">{{ intro }}</p>
 
         <!-- contents -->
         <ol v-if="page.kind === 'contents'" class="mt-3">
           <li v-for="c in CHAPTERS" :key="c.n" :class="ROW">
             <button type="button" class="group w-full cursor-pointer" @click="emit('jump', c.page)">
-              <span :class="cx(NAME, 'block underline-offset-4 group-hover:underline group-hover:decoration-[#06606a]')">{{ c.title }}</span>
+              <span :class="cx(NAME, 'block underline-offset-4 group-hover:underline group-hover:decoration-[#7a2234]')">{{ c.title }}</span>
               <span :class="cx(SUB, 'block')">{{ c.blurb }}</span>
             </button>
           </li>
@@ -156,7 +156,7 @@ const ROW = "border-t border-[#06606a]/15 py-2 text-center first:border-t-0";
               <p :class="NAME">{{ shortName(n) }}</p>
               <p :class="SUB">
                 {{ money(HOTEL_PRICES[n].perTable) }}{{ HOTEL_PRICES[n].basis === "++" ? "++" : " nett" }} · min {{ HOTEL_PRICES[n].minTables }} tables · {{ money(allInPrice(HOTEL_PRICES[n])) }} all in
-                <a v-if="hotelUrl(n)" :href="hotelUrl(n)" target="_blank" rel="noreferrer noopener" :aria-label="`Official wedding page of ${n}`" class="ml-1 text-[#06606a] underline decoration-[#06606a]/40 underline-offset-4 hover:decoration-[#06606a]">Enquire</a>
+                <a v-if="hotelUrl(n)" :href="hotelUrl(n)" target="_blank" rel="noreferrer noopener" :aria-label="`Official wedding page of ${n}`" class="ml-1 text-[#7a2234] underline decoration-[#7a2234]/40 underline-offset-4 hover:decoration-[#7a2234]">Enquire</a>
               </p>
             </li>
           </ul>
@@ -179,7 +179,7 @@ const ROW = "border-t border-[#06606a]/15 py-2 text-center first:border-t-0";
         <ul v-else-if="page.kind === 'list'" class="mt-3">
           <li v-for="r in group(page.group).items" :key="r.name" :class="cx(ROW, compact && 'py-[5px]')">
             <a :href="r.url ?? search(r.name)" target="_blank" rel="noreferrer noopener" class="group block">
-              <span :class="cx(NAME, 'underline-offset-4 group-hover:underline group-hover:decoration-[#06606a]')">{{ r.name }}<span v-if="r.tag" class="ml-2 text-[10.5px] tracking-[0.06em] text-[#06606a]">{{ r.tag }}</span></span>
+              <span :class="cx(NAME, 'underline-offset-4 group-hover:underline group-hover:decoration-[#7a2234]')">{{ r.name }}<span v-if="r.tag" class="ml-2 text-[10.5px] tracking-[0.06em] text-[#7a2234]">{{ r.tag }}</span></span>
               <span :class="cx(SUB, 'block', compact && 'line-clamp-1')">{{ compact ? first(r.note) : r.note }}</span>
             </a>
           </li>
@@ -188,7 +188,7 @@ const ROW = "border-t border-[#06606a]/15 py-2 text-center first:border-t-0";
         <!-- steps -->
         <ol v-else-if="page.kind === 'steps'" class="mt-3">
           <li v-for="(s, i) in group('basics').items" :key="s.name" :class="ROW">
-            <p class="text-[10px] tracking-[0.1em] text-[#06606a]">{{ ROMAN[i] }}</p>
+            <p class="text-[10px] tracking-[0.1em] text-[#7a2234]">{{ ROMAN[i] }}</p>
             <p :class="NAME">{{ s.name.replace(/^\d\.\s*/, "") }}</p>
             <p :class="SUB">{{ compact ? first(s.note) : s.note }}</p>
             <a v-if="s.url" :href="s.url" target="_blank" rel="noreferrer noopener" :class="cx(LINK, 'mt-1 inline-block')">{{ s.cta ?? "Open" }}</a>
@@ -204,7 +204,7 @@ const ROW = "border-t border-[#06606a]/15 py-2 text-center first:border-t-0";
         <template v-else-if="page.kind === 'tips'">
           <ol class="mt-3">
             <li v-for="(t, i) in page.tips" :key="t" :class="ROW">
-              <p class="text-[10px] tracking-[0.1em] text-[#06606a]">{{ ROMAN[i] }}</p>
+              <p class="text-[10px] tracking-[0.1em] text-[#7a2234]">{{ ROMAN[i] }}</p>
               <p class="text-[11.5px] leading-snug">{{ t }}</p>
             </li>
           </ol>
@@ -212,7 +212,7 @@ const ROW = "border-t border-[#06606a]/15 py-2 text-center first:border-t-0";
             <p class="text-[9px] tracking-[0.4em] text-[#7a86a0] uppercase">Further reading</p>
             <ul class="mt-2 flex flex-col items-center gap-1">
               <li v-for="g in group(page.group).guides ?? []" :key="g.url">
-                <a :href="g.url" target="_blank" rel="noreferrer noopener" class="text-[10.5px] leading-snug text-[#06606a] underline decoration-[#06606a]/40 underline-offset-4 hover:decoration-[#06606a]">{{ g.label }}</a>
+                <a :href="g.url" target="_blank" rel="noreferrer noopener" class="text-[10.5px] leading-snug text-[#7a2234] underline decoration-[#7a2234]/40 underline-offset-4 hover:decoration-[#7a2234]">{{ g.label }}</a>
               </li>
             </ul>
           </div>
@@ -223,7 +223,7 @@ const ROW = "border-t border-[#06606a]/15 py-2 text-center first:border-t-0";
           <div :class="cx(ROW, 'mt-3')">
             <p class="text-[9px] tracking-[0.4em] text-[#7a86a0] uppercase">Official</p>
             <a :href="group('basics').items[3].url" target="_blank" rel="noreferrer noopener" class="group mt-1.5 block">
-              <span :class="cx(NAME, 'underline decoration-[#06606a]/40 underline-offset-4 group-hover:decoration-[#06606a]')">Our Marriage Journey</span>
+              <span :class="cx(NAME, 'underline decoration-[#7a2234]/40 underline-offset-4 group-hover:decoration-[#7a2234]')">Our Marriage Journey</span>
               <span :class="cx(SUB, 'block')">The Registry of Marriages (MSF). Apply online, then book your solemnisation.</span>
             </a>
           </div>
@@ -238,7 +238,7 @@ const ROW = "border-t border-[#06606a]/15 py-2 text-center first:border-t-0";
 
       <!-- folio -->
       <footer class="mt-2 flex items-center justify-center gap-3 text-[8.5px] tracking-[0.35em] text-[#7a86a0] uppercase">
-        <span>{{ running }}</span><span class="h-px w-4 bg-[#06606a]/50" /><span class="tabular-nums">{{ no }}</span>
+        <span>{{ running }}</span><span class="h-px w-4 bg-[#7a2234]/50" /><span class="tabular-nums">{{ no }}</span>
       </footer>
     </template>
   </article>

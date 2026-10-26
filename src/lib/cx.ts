@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge";
 export const cx = (...a: ClassValue[]) => twMerge(clsx(a));
 
 export const inputCls =
-  "h-11 w-full rounded-[4px] border border-ink/30 bg-white/50 px-3.5 text-[15px] text-ink placeholder:text-faint outline-none transition focus:border-ink focus:bg-white aria-[invalid=true]:border-bad";
+  "h-11 w-full rounded-[4px] border border-ink/30 bg-white/5 px-3.5 text-[15px] text-ink placeholder:text-faint outline-none transition focus:border-ink focus:bg-white/10 aria-[invalid=true]:border-bad";
 
 /** Everything in $attrs except `class`, for components that merge classes with cx(). */
 export const omitClass = (attrs: Record<string, unknown>) => {

@@ -116,22 +116,21 @@ const dark = computed(() => props.page.kind === "cover" || props.page.kind === "
 const fold = computed(() => (props.side === "left" ? "right-0 bg-gradient-to-l" : "left-0 bg-gradient-to-r"));
 // two tints of blush, so a spread has a left and a right
 const paper = computed(() => {
-  if (props.page.kind === "back") return "#fca47c";
-  if (dark.value) return "#06363c";
+  if (dark.value) return "#14283f";
   return props.no % 2 ? "#d9efee" : "#d0eaea";
 });
 const GRAIN = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E\")";
 
 const CAPS = "text-[10px] font-medium tracking-[0.26em] uppercase";
-const NUM = "shrink-0 font-serif text-[15px] italic leading-none text-[#097c87]";
+const NUM = "shrink-0 font-serif text-[15px] italic leading-none text-[#d08a54]";
 const NAME = "font-serif text-[17px] leading-[1.15] font-medium";
 const SUB = "text-[12px] leading-[1.45] text-[#48767c]";
-const BTN = "inline-flex cursor-pointer items-center gap-3 self-start bg-[#06363c] px-5 py-3 text-[10.5px] font-medium tracking-[0.22em] text-[#e4f4f3] uppercase transition-colors hover:bg-[#097c87]";
-const RULE = "border-t border-[#06363c]/25";
+const BTN = "inline-flex cursor-pointer items-center gap-3 self-start bg-[#1d1e1f] px-5 py-3 text-[10.5px] font-medium tracking-[0.22em] text-[#e6e2da] uppercase transition-colors hover:bg-[#d08a54]";
+const RULE = "border-t border-[#1d1e1f]/25";
 </script>
 
 <template>
-  <article :class="cx('relative flex h-full flex-col overflow-hidden', dark ? 'text-[#e4f4f3]' : 'text-[#06363c]')" :style="{ background: paper }">
+  <article :class="cx('relative flex h-full flex-col overflow-hidden', dark ? 'text-[#e6e2da]' : 'text-[#1d1e1f]')" :style="{ background: paper }">
     <!-- a little grain, so the paper is not flat -->
     <span class="pointer-events-none absolute inset-0 z-0 opacity-[0.10] mix-blend-multiply" :style="{ backgroundImage: GRAIN }" />
     <!-- the fold: a soft shadow along the spine -->
@@ -139,33 +138,33 @@ const RULE = "border-t border-[#06363c]/25";
 
     <!-- cover -->
     <template v-if="page.kind === 'cover'">
-      <span class="pointer-events-none absolute inset-4 z-10 border border-[#fca47c]/50" />
+      <span class="pointer-events-none absolute inset-4 z-10 border border-[#d99573]/50" />
       <div class="relative z-10 flex flex-1 flex-col items-center px-10 pt-11 pb-10 text-center">
-        <p :class="cx(CAPS, 'text-[#fca47c]')">The renovation guide · 2026</p>
+        <p :class="cx(CAPS, 'text-[#d99573]')">The renovation guide · 2026</p>
         <div class="relative mt-6 h-[300px] w-[236px] shrink-0 overflow-hidden rounded-t-full">
           <img src="/images/living-warm.jpg" alt="" class="size-full object-cover" style="object-position: 50% 60%" />
-          <span class="absolute inset-0 bg-[#06363c]/15" />
+          <span class="absolute inset-0 bg-[#1d1e1f]/15" />
         </div>
-        <h2 class="font-serif mt-7 text-[40px] leading-[1.02] font-medium tracking-[-0.01em]">Renovating<br />your <em class="text-[#fca47c]">first</em> home</h2>
-        <p v-if="mine" :class="cx(CAPS, 'mt-4 text-[#fca47c]')">Made for your {{ guideState.rooms }}-room {{ homeNoun(guideState.home) }}</p>
-        <p v-else class="font-serif mt-4 max-w-[30ch] text-[14px] leading-snug italic text-[#e4f4f3]/80">What it costs, who to hire and what HDB expects.</p>
-        <p :class="cx(CAPS, 'mt-auto text-[9px] text-[#e4f4f3]/60')">SMilestones</p>
+        <h2 class="font-serif mt-7 text-[40px] leading-[1.02] font-medium tracking-[-0.01em]">Renovating<br />your <em class="text-[#d99573]">first</em> home</h2>
+        <p v-if="mine" :class="cx(CAPS, 'mt-4 text-[#d99573]')">Made for your {{ guideState.rooms }}-room {{ homeNoun(guideState.home) }}</p>
+        <p v-else class="font-serif mt-4 max-w-[30ch] text-[14px] leading-snug italic text-[#e6e2da]/80">What it costs, who to hire and what HDB expects.</p>
+        <p :class="cx(CAPS, 'mt-auto text-[9px] text-[#e6e2da]/60')">SMilestones</p>
       </div>
     </template>
 
     <!-- back cover -->
-    <div v-else-if="page.kind === 'back'" class="relative z-10 flex flex-1 flex-col items-center justify-center px-12 text-center text-[#06363c]">
-      <div class="relative size-[150px] overflow-hidden rounded-full"><img src="/images/living-bright.jpg" alt="" class="size-full object-cover" style="object-position: 40% 55%" /><span class="absolute inset-0 bg-[#06363c]/10" /></div>
+    <div v-else-if="page.kind === 'back'" class="relative z-10 flex flex-1 flex-col items-center justify-center px-12 text-center text-[#e6e2da]">
+      <div class="relative size-[150px] overflow-hidden rounded-full"><img src="/images/living-bright.jpg" alt="" class="size-full object-cover" style="object-position: 40% 55%" /><span class="absolute inset-0 bg-[#1d1e1f]/10" /></div>
       <p class="font-serif mt-9 text-[32px] leading-[1.08] font-medium">Save for one milestone.<br /><em>The next one opens.</em></p>
-      <span class="mt-6 h-px w-12 bg-[#06363c]/60" />
-      <p class="mt-5 max-w-[30ch] text-[12.5px] leading-relaxed text-[#06363c]/80">Plan the works and add your own milestones when you set up your renovation pot.</p>
-      <p :class="cx(CAPS, 'mt-12 text-[9px]')">SMilestones</p>
+      <span class="mt-6 h-px w-12 bg-[#d99573]" />
+      <p class="mt-5 max-w-[30ch] text-[12.5px] leading-relaxed text-[#e6e2da]/80">Plan the works and add your own milestones when you set up your renovation pot.</p>
+      <p :class="cx(CAPS, 'mt-12 text-[9px] text-[#e6e2da]/60')">SMilestones</p>
     </div>
 
     <!-- every inside page -->
     <template v-else>
       <!-- running head -->
-      <header :class="cx('relative z-10 flex shrink-0 items-center justify-between gap-4 px-9 pt-7 text-[9px] font-medium tracking-[0.28em] uppercase', dark ? 'text-[#fca47c]' : 'text-[#48767c]')">
+      <header :class="cx('relative z-10 flex shrink-0 items-center justify-between gap-4 px-9 pt-7 text-[9px] font-medium tracking-[0.28em] uppercase', dark ? 'text-[#d99573]' : 'text-[#48767c]')">
         <span class="shrink-0">SMilestones</span><span class="truncate">{{ running }}</span>
       </header>
 
@@ -173,20 +172,20 @@ const RULE = "border-t border-[#06363c]/25";
       <template v-if="page.kind === 'opener'">
         <div class="relative z-10 flex shrink-0 gap-5 px-9 pt-5">
           <div class="flex min-w-0 flex-1 flex-col">
-            <p :class="cx(CAPS, 'text-[#fca47c]')">Chapter</p>
-            <p class="font-serif -mt-1 text-[84px] leading-[0.95] font-light text-[#fca47c]">{{ pad(chap) }}</p>
-            <h2 class="font-serif mt-3 text-[28px] leading-[1.05] font-medium"><template v-if="lead">{{ lead + " " }}</template><em class="text-[#fca47c]">{{ tail }}</em></h2>
+            <p :class="cx(CAPS, 'text-[#d99573]')">Chapter</p>
+            <p class="font-serif -mt-1 text-[84px] leading-[0.95] font-light text-[#d99573]">{{ pad(chap) }}</p>
+            <h2 class="font-serif mt-3 text-[28px] leading-[1.05] font-medium"><template v-if="lead">{{ lead + " " }}</template><em class="text-[#d99573]">{{ tail }}</em></h2>
           </div>
           <div v-if="photo" class="relative w-[44%] shrink-0 overflow-hidden rounded-t-full" :class="compact ? 'h-[210px]' : 'h-[190px]'">
-            <img :src="photo[0]" alt="" class="size-full object-cover" :style="{ objectPosition: photo[1] }" /><span class="absolute inset-0 bg-[#06363c]/15" />
+            <img :src="photo[0]" alt="" class="size-full object-cover" :style="{ objectPosition: photo[1] }" /><span class="absolute inset-0 bg-[#1d1e1f]/15" />
           </div>
         </div>
         <div data-body class="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden px-9 pt-4">
-          <p class="font-serif mb-2 line-clamp-2 text-[13px] leading-snug italic text-[#e4f4f3]/80">{{ intro }}</p>
+          <p class="font-serif mb-2 line-clamp-2 text-[13px] leading-snug italic text-[#e6e2da]/80">{{ intro }}</p>
           <ol>
-            <li v-for="(f, i) in page.facts" :key="f.h" class="flex gap-4 border-t border-[#fca47c]/30 py-2">
-              <span class="w-5 shrink-0 font-serif text-[14px] italic text-[#fca47c]">{{ pad(i + 1) }}</span>
-              <div class="min-w-0"><p class="text-[12.5px] leading-snug font-semibold">{{ f.h }}</p><p :class="cx('text-[11.5px] leading-[1.4] text-[#e4f4f3]/70', compact && 'line-clamp-2')">{{ f.b }}</p></div>
+            <li v-for="(f, i) in page.facts" :key="f.h" class="flex gap-4 border-t border-[#d99573]/30 py-2">
+              <span class="w-5 shrink-0 font-serif text-[14px] italic text-[#d99573]">{{ pad(i + 1) }}</span>
+              <div class="min-w-0"><p class="text-[12.5px] leading-snug font-semibold">{{ f.h }}</p><p :class="cx('text-[11.5px] leading-[1.4] text-[#e6e2da]/70', compact && 'line-clamp-2')">{{ f.b }}</p></div>
             </li>
           </ol>
         </div>
@@ -196,8 +195,8 @@ const RULE = "border-t border-[#06363c]/25";
       <template v-else>
         <div class="relative z-10 flex shrink-0 items-start justify-between gap-4 px-9 pt-6">
           <div class="min-w-0">
-            <p :class="cx(CAPS, 'flex items-center gap-3 text-[#097c87]')"><span class="h-px w-7 bg-[#097c87]" />{{ chap ? `Chapter ${pad(chap)}` : "Contents" }}</p>
-            <h2 class="font-serif mt-3 text-[31px] leading-[1.03] font-medium tracking-[-0.01em]"><template v-if="lead">{{ lead + " " }}</template><em class="text-[#097c87]">{{ tail }}</em></h2>
+            <p :class="cx(CAPS, 'flex items-center gap-3 text-[#d08a54]')"><span class="h-px w-7 bg-[#d08a54]" />{{ chap ? `Chapter ${pad(chap)}` : "Contents" }}</p>
+            <h2 class="font-serif mt-3 text-[31px] leading-[1.03] font-medium tracking-[-0.01em]"><template v-if="lead">{{ lead + " " }}</template><em class="text-[#d08a54]">{{ tail }}</em></h2>
             <p v-if="intro" class="font-serif mt-2.5 max-w-[34ch] text-[13.5px] leading-snug italic text-[#48767c]">{{ intro }}</p>
           </div>
         </div>
@@ -207,8 +206,8 @@ const RULE = "border-t border-[#06363c]/25";
           <ol v-if="page.kind === 'contents'" :class="RULE">
             <li v-for="c in RENO_CHAPTERS" :key="c.n" :class="cx(RULE, 'first:border-t-0')">
               <button type="button" class="group grid w-full cursor-pointer grid-cols-[38px_minmax(0,1fr)_auto] items-baseline gap-3 py-2.5 text-left" @click="emit('jump', c.page)">
-                <span class="font-serif text-[22px] leading-none font-light text-[#097c87]">{{ pad(c.n) }}</span>
-                <span class="min-w-0"><span :class="cx(NAME, 'block group-hover:text-[#097c87]')">{{ c.title }}</span><span :class="cx(SUB, 'block')">{{ c.blurb }}</span></span>
+                <span class="font-serif text-[22px] leading-none font-light text-[#d08a54]">{{ pad(c.n) }}</span>
+                <span class="min-w-0"><span :class="cx(NAME, 'block group-hover:text-[#d08a54]')">{{ c.title }}</span><span :class="cx(SUB, 'block')">{{ c.blurb }}</span></span>
                 <span class="font-serif text-[13px] italic text-[#48767c]">{{ c.page }}</span>
               </button>
             </li>
@@ -217,18 +216,18 @@ const RULE = "border-t border-[#06363c]/25";
           <!-- what a flat costs: the numbers, large -->
           <template v-else-if="page.kind === 'costs'">
             <ul>
-              <li v-for="c in COST_TABLE" :key="c.flat" :class="cx(RULE, 'flex items-end justify-between gap-4 py-2', mine && c.flat === `${guideState.rooms}-room` && '-mx-3 bg-[#06363c]/[0.07] px-3')">
-                <div><p class="font-serif text-[30px] leading-none font-light">{{ c.flat }}</p><p v-if="mine && c.flat === `${guideState.rooms}-room`" :class="cx(CAPS, 'mt-2 text-[9px] text-[#097c87]')">Your flat</p></div>
+              <li v-for="c in COST_TABLE" :key="c.flat" :class="cx(RULE, 'flex items-end justify-between gap-4 py-2', mine && c.flat === `${guideState.rooms}-room` && '-mx-3 bg-[#1d1e1f]/[0.07] px-3')">
+                <div><p class="font-serif text-[30px] leading-none font-light">{{ c.flat }}</p><p v-if="mine && c.flat === `${guideState.rooms}-room`" :class="cx(CAPS, 'mt-2 text-[9px] text-[#d08a54]')">Your flat</p></div>
                 <div class="text-right">
                   <p class="flex items-baseline justify-end gap-3"><span class="text-[9.5px] font-medium tracking-[0.2em] text-[#48767c] uppercase">New BTO</span><span class="font-serif text-[21px] leading-tight">{{ short(c.bto[0]) }} to {{ short(c.bto[1]) }}</span></p>
-                  <p class="mt-0.5 flex items-baseline justify-end gap-3"><span class="text-[9.5px] font-medium tracking-[0.2em] text-[#48767c] uppercase">Resale</span><span class="font-serif text-[17px] leading-tight text-[#06363c]/80">{{ short(c.resale[0]) }}{{ c.resale[1] ? ` to ${short(c.resale[1])}` : " and up" }}</span></p>
+                  <p class="mt-0.5 flex items-baseline justify-end gap-3"><span class="text-[9.5px] font-medium tracking-[0.2em] text-[#48767c] uppercase">Resale</span><span class="font-serif text-[17px] leading-tight text-[#1d1e1f]/80">{{ short(c.resale[0]) }}{{ c.resale[1] ? ` to ${short(c.resale[1])}` : " and up" }}</span></p>
                 </div>
               </li>
               <li :class="RULE" />
             </ul>
             <p :class="cx(SUB, 'mt-1 text-[11px]')">For the works only: furniture and appliances are extra. Terris, August 2026. Other guides give a lower or higher middle, so treat these as a starting point, not a quote.</p>
             <ul class="mt-2 flex flex-col gap-0.5">
-              <li v-for="s in RENO_SOURCES.slice(1, 3)" :key="s.url"><a :href="s.url" target="_blank" rel="noreferrer noopener" class="text-[11.5px] font-medium text-[#097c87] underline underline-offset-4 hover:text-[#06363c]">{{ s.label }}</a></li>
+              <li v-for="s in RENO_SOURCES.slice(1, 3)" :key="s.url"><a :href="s.url" target="_blank" rel="noreferrer noopener" class="text-[11.5px] font-medium text-[#d08a54] underline underline-offset-4 hover:text-[#1d1e1f]">{{ s.label }}</a></li>
             </ul>
             <RouterLink to="/pots/new?kind=renovation&from=renovation" :class="cx(BTN, 'mt-3')">Plan your budget <span aria-hidden="true">→</span></RouterLink>
           </template>
@@ -249,7 +248,7 @@ const RULE = "border-t border-[#06363c]/25";
             <li v-for="(r, i) in page.items" :key="r.name" :class="cx(RULE, 'first:border-t-0')">
               <a :href="r.url" target="_blank" rel="noreferrer noopener" class="group grid grid-cols-[30px_minmax(0,1fr)] items-baseline py-3">
                 <span :class="NUM">{{ pad(i + 1) }}</span>
-                <span class="min-w-0"><span :class="cx(NAME, 'underline decoration-[#097c87]/40 underline-offset-4 group-hover:decoration-[#097c87]')">{{ r.name }}</span><span v-if="r.tag" class="ml-2 text-[9.5px] font-medium tracking-[0.18em] text-[#097c87] uppercase">{{ r.tag }}</span><span :class="cx(SUB, 'block', compact && 'line-clamp-2')">{{ compact ? first(r.note) : r.note }}</span></span>
+                <span class="min-w-0"><span :class="cx(NAME, 'underline decoration-[#d08a54]/40 underline-offset-4 group-hover:decoration-[#d08a54]')">{{ r.name }}</span><span v-if="r.tag" class="ml-2 text-[9.5px] font-medium tracking-[0.18em] text-[#d08a54] uppercase">{{ r.tag }}</span><span :class="cx(SUB, 'block', compact && 'line-clamp-2')">{{ compact ? first(r.note) : r.note }}</span></span>
               </a>
             </li>
           </ol>
@@ -289,16 +288,16 @@ const RULE = "border-t border-[#06363c]/25";
 
           <!-- links and fine print -->
           <template v-else-if="page.kind === 'links'">
-            <p :class="cx(CAPS, 'text-[#097c87]')">Official pages</p>
+            <p :class="cx(CAPS, 'text-[#d08a54]')">Official pages</p>
             <a href="https://go.gov.sg/hdb-reno" target="_blank" rel="noreferrer noopener" class="group mt-2 block">
-              <span :class="cx(NAME, 'underline decoration-[#097c87]/50 decoration-2 underline-offset-4 group-hover:decoration-[#097c87]')">HDB: renovation guidelines →</span>
+              <span :class="cx(NAME, 'underline decoration-[#d08a54]/50 decoration-2 underline-offset-4 group-hover:decoration-[#d08a54]')">HDB: renovation guidelines →</span>
               <span :class="cx(SUB, 'block')">Permits, guidelines and examples of disallowed works.</span>
             </a>
             <a href="https://go.gov.sg/hdb-reno-contractors" target="_blank" rel="noreferrer noopener" class="group mt-3 block">
-              <span :class="cx(NAME, 'underline decoration-[#097c87]/50 decoration-2 underline-offset-4 group-hover:decoration-[#097c87]')">HDB: renovation contractors →</span>
+              <span :class="cx(NAME, 'underline decoration-[#d08a54]/50 decoration-2 underline-offset-4 group-hover:decoration-[#d08a54]')">HDB: renovation contractors →</span>
               <span :class="cx(SUB, 'block')">The Directory of Renovation Contractors, with an online lookup.</span>
             </a>
-            <p :class="cx(CAPS, 'mt-6 text-[#097c87]')">Reading the prices</p>
+            <p :class="cx(CAPS, 'mt-6 text-[#d08a54]')">Reading the prices</p>
             <p :class="cx(SUB, 'mt-2')">Costs come from 2026 guides and are for the works only. Furniture and appliances are extra.</p>
             <p :class="cx(SUB, 'mt-1.5')">Ratings and review counts are the ones Qanvast and the guides showed. We have not reviewed or visited any firm.</p>
             <p :class="cx(SUB, 'mt-1.5')">Nothing here is an endorsement. Ask for itemised quotes and check HDB's pages before you sign.</p>
@@ -306,14 +305,14 @@ const RULE = "border-t border-[#06363c]/25";
 
           <!-- the photo that fills the rest of the page -->
           <div v-if="fill.length" :class="cx('relative mt-4 flex min-h-[96px] flex-1 gap-2 overflow-hidden', fillEdge)">
-            <div v-for="(g, i) in fill" :key="g[0]" :class="cx('relative min-w-0', i === 0 ? 'flex-[1.5]' : 'flex-1')"><img :src="g[0]" alt="" class="absolute inset-0 size-full object-cover" :style="{ objectPosition: g[1] }" /><span class="absolute inset-0 bg-[#06363c]/10" /></div>
+            <div v-for="(g, i) in fill" :key="g[0]" :class="cx('relative min-w-0', i === 0 ? 'flex-[1.5]' : 'flex-1')"><img :src="g[0]" alt="" class="absolute inset-0 size-full object-cover" :style="{ objectPosition: g[1] }" /><span class="absolute inset-0 bg-[#1d1e1f]/10" /></div>
           </div>
         </div>
       </template>
 
       <!-- folio -->
-      <footer :class="cx('relative z-10 flex shrink-0 items-center justify-between px-9 pt-2 pb-6 text-[9px] font-medium tracking-[0.28em] uppercase', dark ? 'text-[#e4f4f3]/60' : 'text-[#48767c]')">
-        <span>The renovation guide</span><span class="font-serif text-[14px] tracking-normal normal-case italic" :class="dark ? 'text-[#fca47c]' : 'text-[#097c87]'">{{ no }}</span>
+      <footer :class="cx('relative z-10 flex shrink-0 items-center justify-between px-9 pt-2 pb-6 text-[9px] font-medium tracking-[0.28em] uppercase', dark ? 'text-[#e6e2da]/60' : 'text-[#48767c]')">
+        <span>The renovation guide</span><span class="font-serif text-[14px] tracking-normal normal-case italic" :class="dark ? 'text-[#d99573]' : 'text-[#d08a54]'">{{ no }}</span>
       </footer>
     </template>
   </article>

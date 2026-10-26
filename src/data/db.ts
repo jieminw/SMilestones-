@@ -25,7 +25,6 @@ export const COLUMNS: Record<TableName, Record<string, ColType>> = {
   requests: { id: "uuid", couple_id: "uuid", kind: "text", pot_id: "uuid", to_pot_id: "uuid", amount: "int", reason: "text", requested_by: "uuid", status: "text", response_note: "text", expires_at: "ts", responded_at: "ts", created_at: "ts" },
   pet_care: { id: "uuid", couple_id: "uuid", user_id: "uuid", action: "text", coins: "int", created_at: "ts" },
   notifications: { id: "uuid", couple_id: "uuid", user_id: "uuid", text: "text", href: "text", read: "bool", created_at: "ts" },
-  money_dates: { id: "uuid", couple_id: "uuid", month: "date", completed_by: "json", created_at: "ts" },
   pot_members: { id: "uuid", couple_id: "uuid", pot_id: "uuid", user_id: "uuid", role: "text", display_name: "text", created_at: "ts" },
   covers: { id: "uuid", couple_id: "uuid", pot_id: "uuid", payer_id: "uuid", for_user_id: "uuid", month: "date", amount: "int", months: "int", status: "text", response_note: "text", responded_at: "ts", created_at: "ts" },
   bto_applications: { id: "uuid", couple_id: "uuid", pot_id: "uuid", exercise: "text", project_id: "text", flat_type: "text", applied_on: "date", result: "text", queue_number: "int", created_at: "ts" },
@@ -67,12 +66,12 @@ export async function loadState(db: Db, coupleId: string): Promise<CoupleState |
     byCouple("profiles"), byCouple("pots"), byCouple("proposals"), byCouple("transactions"), byCouple("requests"), byCouple("pet_care"),
     db.query(`select ${selectList("stages")} from stages t join pots p on p.id = t.pot_id where p.couple_id = $1::uuid`, [coupleId]).then((r) => r.map((x) => normalise("stages", x))),
   ]);
-  const [notifications, btoApplications, covers, potMembers, moneyDates] = await Promise.all([
-    byCouple("notifications"), byCouple("bto_applications"), byCouple("covers"), byCouple("pot_members"), byCouple("money_dates"),
+  const [notifications, btoApplications, covers, potMembers] = await Promise.all([
+    byCouple("notifications"), byCouple("bto_applications"), byCouple("covers"), byCouple("pot_members"),
   ]);
   return {
     couple: normalise("couples", couple) as unknown as CoupleState["couple"],
-    profiles, pots, stages, proposals, transactions, requests, petCare, notifications, btoApplications, covers, potMembers, moneyDates,
+    profiles, pots, stages, proposals, transactions, requests, petCare, notifications, btoApplications, covers, potMembers,
   } as unknown as CoupleState;
 }
 

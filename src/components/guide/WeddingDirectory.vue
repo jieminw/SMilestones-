@@ -12,7 +12,7 @@ const TABS = [
   { id: "gown", label: "Wedding gowns", plural: "gown boutiques", unit: "Rental, from", profileSite: "SingaporeBrides" },
 ];
 // navy and wine, like the guide, with a photo for each list
-const THEME = { page: "#e8f6f6", head: "#06363c", headText: "#f2fafa", accent: "#06606a", soft: "#f9d779", line: "#bee0e0", ink: "#06363c", photos: { hotel: "banquet-table", venue: "rustic-table", photo: "palm-couple", gown: "rings-hands" } };
+const THEME = { page: "#ece9e2", head: "#4a1420", headText: "#f1f1ef", accent: "#7a2234", soft: "#e3c476", line: "#c9c3b8", ink: "#1d1e1f", photos: { hotel: "banquet-table", venue: "rustic-table", photo: "palm-couple", gown: "rings-hands" } };
 // the hotel list leaves the Chinese restaurants out unless asked for
 const TOGGLES = [
   { id: "restaurants", category: "hotel", label: "Add {n} Chinese restaurants", title: "Chinese restaurants that sell banquet tables by the table of 10, like a hotel", hiddenWhenOff: isRestaurant },

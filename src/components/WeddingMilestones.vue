@@ -94,7 +94,7 @@ function startOver() {
           <div class="flex items-baseline gap-3 py-2 font-medium"><dt>Cash needed before the banquet</dt><span class="mb-1 flex-1 border-b border-dotted border-faint/60" /><dd class="tabular">{{ fmt(cash.upfront) }}</dd></div>
         </dl>
       </div>
-      <div class="flex flex-col justify-center bg-[#06363c] px-6 py-6 text-[#eaf7f7]">
+      <div class="flex flex-col justify-center bg-navy px-6 py-6 text-[#eaf7f7]">
         <p class="font-mono text-[10.5px] tracking-[0.14em] text-[#eaf7f7]/60 uppercase">Fork out before the banquet</p>
         <p class="font-serif tabular mt-2 text-[40px] leading-none">{{ fmt(cash.upfront) }}</p>
       </div>

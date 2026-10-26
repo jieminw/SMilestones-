@@ -14,7 +14,7 @@ withDefaults(defineProps<{ size?: number; mood?: "happy" | "content" | "sad"; ou
         <ellipse :cx="40 + i * 4" :cy="196 - i * 26" rx="12" ry="5" :transform="`rotate(-40 ${40 + i * 4} ${196 - i * 26})`" />
         <ellipse :cx="180 - i * 4" :cy="196 - i * 26" rx="12" ry="5" :transform="`rotate(40 ${180 - i * 4} ${196 - i * 26})`" />
       </g>
-      <rect x="46" y="200" width="128" height="20" rx="10" fill="#f4895a" />
+      <rect x="46" y="200" width="128" height="20" rx="10" fill="#e8906a" />
       <rect x="56" y="196" width="108" height="10" rx="5" fill="#e08b6e" />
     </svg>
     <div class="anim-bob absolute left-1/2 -translate-x-1/2" :style="{ bottom: size * 0.1 + 'px' }">

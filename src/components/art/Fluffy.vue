@@ -31,24 +31,24 @@ withDefaults(defineProps<{ size?: number; mood?: "happy" | "content" | "sad"; ou
     <path d="M133 62 L136 30 L112 52 Z" fill="url(#ear)" />
     <!-- head -->
     <path d="M40 92 C40 58 66 46 95 46 C124 46 150 58 150 92 C150 116 126 130 95 130 C64 130 40 116 40 92 Z" fill="url(#fur)" stroke="#fcd3bf" stroke-width="1.5" />
-    <path d="M40 98 L26 104 L44 108 Z M150 98 L164 104 L146 108 Z" fill="#e8f6f6" />
-    <g v-if="mood === 'sad'" stroke="#0a5059" stroke-width="3" stroke-linecap="round" fill="none">
+    <path d="M40 98 L26 104 L44 108 Z M150 98 L164 104 L146 108 Z" fill="#e8e4dc" />
+    <g v-if="mood === 'sad'" stroke="#1d1e1f" stroke-width="3" stroke-linecap="round" fill="none">
       <path d="M70 92 q6 4 12 0" />
       <path d="M108 92 q6 4 12 0" />
     </g>
-    <g v-else stroke="#0a5059" stroke-width="3.2" stroke-linecap="round" fill="none">
+    <g v-else stroke="#1d1e1f" stroke-width="3.2" stroke-linecap="round" fill="none">
       <path d="M69 94 q7 -8 14 0" />
       <path d="M107 94 q7 -8 14 0" />
     </g>
-    <ellipse cx="64" cy="108" rx="8" ry="5" fill="#fca47c" opacity="0.55" />
-    <ellipse cx="126" cy="108" rx="8" ry="5" fill="#fca47c" opacity="0.55" />
+    <ellipse cx="64" cy="108" rx="8" ry="5" fill="#d99573" opacity="0.55" />
+    <ellipse cx="126" cy="108" rx="8" ry="5" fill="#d99573" opacity="0.55" />
     <path d="M91 104 L99 104 L95 109 Z" fill="#c98a76" />
-    <path v-if="mood === 'sad'" d="M89 118 q6 -4 12 0" stroke="#0a5059" stroke-width="2.5" fill="none" stroke-linecap="round" />
-    <path v-else d="M86 113 q4.5 5 9 0 q4.5 5 9 0" stroke="#0a5059" stroke-width="2.5" fill="none" stroke-linecap="round" />
+    <path v-if="mood === 'sad'" d="M89 118 q6 -4 12 0" stroke="#1d1e1f" stroke-width="2.5" fill="none" stroke-linecap="round" />
+    <path v-else d="M86 113 q4.5 5 9 0 q4.5 5 9 0" stroke="#1d1e1f" stroke-width="2.5" fill="none" stroke-linecap="round" />
     <!-- collar + pendant, or unlocked outfit -->
     <path v-if="outfit >= 2" d="M60 128 Q95 146 130 128 L132 138 Q95 156 58 138 Z" fill="#e0764a" />
-    <path v-else d="M66 128 Q95 140 124 128" stroke="#f4895a" stroke-width="3" fill="none" />
-    <circle cx="95" cy="141" r="8" fill="#e6a05a" stroke="#f4895a" stroke-width="2" />
+    <path v-else d="M66 128 Q95 140 124 128" stroke="#e8906a" stroke-width="3" fill="none" />
+    <circle cx="95" cy="141" r="8" fill="#e6a05a" stroke="#e8906a" stroke-width="2" />
     <path d="M95 137 v8 M92 140 l3 -3 l3 3" stroke="#fff6e8" stroke-width="1.5" fill="none" />
     <g v-if="outfit >= 3">
       <path d="M60 52 L95 38 L130 52 L95 64 Z" fill="#1c2d44" />

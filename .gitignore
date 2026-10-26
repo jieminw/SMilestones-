@@ -43,3 +43,6 @@ next-env.d.ts
 
 # build output
 /dist
+
+# one-paste copy of the migrations, for the Supabase SQL editor
+/supabase/_run-all.sql

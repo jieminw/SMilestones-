@@ -156,7 +156,7 @@ async function finish() {
             :value="d"
             inputmode="numeric"
             :aria-label="`Digit ${i + 1}`"
-            :class="cx('tabular h-14 w-full rounded-xl border border-line bg-white/70 text-center font-serif text-2xl outline-none focus:border-navy focus:ring-2 focus:ring-navy/10')"
+            :class="cx('tabular h-14 w-full rounded-xl border border-line bg-white/10 text-center font-serif text-2xl outline-none focus:border-navy focus:ring-2 focus:ring-navy/10')"
             @input="setDigit(i, ($event.target as HTMLInputElement).value)"
             @keydown="onKeydown($event, i)"
           />

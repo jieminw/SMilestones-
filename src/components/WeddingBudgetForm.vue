@@ -275,7 +275,7 @@ function go(i: number) {
           </div>
         </dl>
 
-        <div class="mt-4 rounded-[6px] bg-[#06363c] px-6 py-5 text-[#eaf7f7]">
+        <div class="mt-4 rounded-[6px] bg-navy px-6 py-5 text-[#eaf7f7]">
           <p class="font-mono text-[11px] tracking-[0.14em] text-[#eaf7f7]/60 uppercase">Cash needed before the banquet</p>
           <p class="font-serif tabular mt-2 text-[clamp(44px,7vw,68px)] leading-none">{{ fmt(cash.upfront) }}</p>
           <p class="mt-3 text-[13.5px] leading-relaxed text-[#eaf7f7]/70">

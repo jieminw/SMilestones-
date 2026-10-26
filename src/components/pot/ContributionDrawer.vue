@@ -80,7 +80,6 @@ async function del() {
 <template>
   <Drawer open :title="mine ? 'Edit contribution' : 'Contribution details'" @close="close">
     <div class="mb-6 flex items-center gap-3 rounded-2xl bg-surface-2 p-4">
-      <PotIcon :kind="pot.kind" />
       <div class="text-sm">
         <div class="font-medium">{{ pot.name }}</div>
         <div class="text-muted">

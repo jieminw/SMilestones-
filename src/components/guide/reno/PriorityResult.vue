@@ -16,7 +16,7 @@ const chosen = computed(() => g.picks.map((id) => PRIORITIES.find((p) => p.id ==
         <li v-for="p in chosen" :key="p.id">
           <p class="font-serif text-[17px] leading-tight font-semibold">{{ p.label }}</p>
           <ul class="mt-1 flex flex-col gap-0.5">
-            <li v-for="s in p.spend" :key="s" class="flex gap-2 text-[12px] leading-snug"><span class="font-semibold text-[#097c87]" aria-hidden="true">+</span><span>{{ s }}</span></li>
+            <li v-for="s in p.spend" :key="s" class="flex gap-2 text-[12px] leading-snug"><span class="font-semibold text-[#d08a54]" aria-hidden="true">+</span><span>{{ s }}</span></li>
           </ul>
           <p class="mt-1 flex gap-2 text-[12px] leading-snug text-[#48767c]"><span class="font-semibold" aria-hidden="true">−</span><span>Spend less on: {{ p.save }}</span></p>
         </li>
@@ -25,7 +25,7 @@ const chosen = computed(() => g.picks.map((id) => PRIORITIES.find((p) => p.id ==
     </template>
     <template v-else>
       <p class="text-[13px] leading-relaxed text-[#48767c]">You skipped the question about what matters most. Answer it, and this page will say where to spend and where to save.</p>
-      <button type="button" class="mt-4 inline-flex cursor-pointer items-center gap-2 self-start bg-[#06363c] px-5 py-3 text-[10.5px] font-medium tracking-[0.22em] text-[#e4f4f3] uppercase transition-colors hover:bg-[#097c87]" @click="$emit('back')"><span aria-hidden="true">←</span> Add my priorities</button>
+      <button type="button" class="mt-4 inline-flex cursor-pointer items-center gap-2 self-start bg-[#1d1e1f] px-5 py-3 text-[10.5px] font-medium tracking-[0.22em] text-[#e6e2da] uppercase transition-colors hover:bg-[#d08a54]" @click="$emit('back')"><span aria-hidden="true">←</span> Add my priorities</button>
     </template>
   </div>
 </template>

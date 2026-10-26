@@ -16,11 +16,10 @@ const router = useRouter();
 const NAV = [
   { href: "/home", label: "Home" },
   { href: "/navigator", label: "BTO" },
-  { href: "/wallet", label: "Wallet" },
-  { href: "/timeline", label: "Timeline" },
   { href: "/wedding", label: "Wedding" },
   { href: "/renovation", label: "Renovation" },
-  { href: "/money-date", label: "Money date" },
+  { href: "/wallet", label: "Wallet" },
+  { href: "/timeline", label: "Timeline" },
   { href: "/inbox", label: "Approvals" },
 ];
 // What an unpaired person can still use.
@@ -58,7 +57,7 @@ async function leave() {
       <div class="mx-auto flex max-w-[1360px] flex-wrap items-center gap-x-4 gap-y-1 px-4 py-2 lg:h-[68px] lg:flex-nowrap lg:px-6 lg:py-0">
         <RouterLink to="/home" class="flex shrink-0 items-center gap-2.5" aria-label="SMilestones home">
           <Logo :size="30" />
-          <span class="font-serif hidden text-[21px] 2xl:inline">SMilestones</span>
+          <span class="font-serif hidden text-[21px] 2xl:inline"><span class="text-who-a">S</span>Milestones</span>
         </RouterLink>
 
         <nav class="order-3 flex w-full items-center gap-1 overflow-x-auto pb-1 lg:order-none lg:mx-auto lg:w-auto lg:overflow-visible lg:pb-0">
@@ -86,13 +85,13 @@ async function leave() {
               v-for="(p, i) in app.demoPeople"
               :key="p.id"
               type="button"
-              :class="cx('flex cursor-pointer items-center gap-1.5 rounded-[3px] py-0.5 pr-2.5 pl-0.5 text-xs font-medium transition-colors', p.id === app.meId ? 'bg-ink text-white' : 'text-ink hover:bg-white/70')"
+              :class="cx('flex cursor-pointer items-center gap-1.5 rounded-[3px] py-0.5 pr-2.5 pl-0.5 text-xs font-medium transition-colors', p.id === app.meId ? 'bg-ink text-white' : 'text-ink hover:bg-white/10')"
               @click="app.switchUser(p.id)"
             >
               <Avatar :name="p.display_name" :who="i === 0 ? 'a' : 'b'" :size="22" />
               <span class="hidden 2xl:inline">{{ firstName(p) }}</span>
             </button>
-            <button type="button" title="Reset demo data" class="cursor-pointer rounded-full p-1.5 text-muted hover:bg-white/70" @click="app.resetDemo()"><RotateCcw :size="13" /></button>
+            <button type="button" title="Reset demo data" class="cursor-pointer rounded-full p-1.5 text-muted hover:bg-white/10" @click="app.resetDemo()"><RotateCcw :size="13" /></button>
           </div>
           <RouterLink to="/settings" title="Settings" class="flex size-10 items-center justify-center rounded-[4px] text-ink/75 hover:bg-ink/8"><Settings :size="17" /></RouterLink>
           <button type="button" :title="app.mode === 'demo' ? 'Leave demo' : 'Sign out'" class="flex size-10 cursor-pointer items-center justify-center rounded-[4px] text-ink/75 hover:bg-ink/8" @click="leave"><LogOut :size="17" /></button>

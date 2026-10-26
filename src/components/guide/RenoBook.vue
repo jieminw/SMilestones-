@@ -8,7 +8,7 @@ import RenoPage from "./RenoPage.vue";
 </script>
 
 <template>
-  <FlipBook :count="RENO_PAGES.length" :chapters="RENO_CHAPTERS" :state="renoGuide" :blocked="renoDirectory.open" label="The renovation guide" dialog-label="Renovation guide for new homes in Singapore" backdrop="bg-[#032a2f]/94" light="#f9d779" dark="#06363c">
+  <FlipBook :count="RENO_PAGES.length" :chapters="RENO_CHAPTERS" :state="renoGuide" :blocked="renoDirectory.open" label="The renovation guide" dialog-label="Renovation guide for new homes in Singapore" backdrop="bg-[#0a1624]/94" light="#e3c476" dark="#14283f">
     <template #page="{ index, side, compact, go }">
       <RenoPage :page="RENO_PAGES[index]" :no="index" :side="side as 'left' | 'right' | 'single'" :compact="compact" class="min-h-full flex-1" @jump="go" />
     </template>

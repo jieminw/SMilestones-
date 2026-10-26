@@ -18,7 +18,7 @@ const months = computed(() => cashflowTimeline(s.value, 36));
 const crunches = computed(() => findCrunches(s.value, 36));
 const maxDue = computed(() => Math.max(...months.value.map((m) => m.dueTotal), 1));
 const pots = computed(() => s.value.pots.filter((p) => p.status === "active"));
-const COLORS = ["#06363c", "#8b5e3c", "#f4895a", "#4e5a66", "#9d8e7d", "#5a7a55"];
+const COLORS = ["#d9dede", "#b07d55", "#e8906a", "#7f93a6", "#9d8e7d", "#5a7a55"];
 const colorOf = (potId: string) => COLORS[Math.max(pots.value.findIndex((p) => p.id === potId), 0) % COLORS.length];
 const fmtTick = (iso: string) => fmtMonth(iso).split(" ");
 const BAR_H = 180;

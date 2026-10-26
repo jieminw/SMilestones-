@@ -10,7 +10,6 @@ import type { CareAction, CoupleState } from "./types";
 import { clamp } from "./money";
 import { daysBetween } from "./dates";
 import { liveTx, potStages, stageProgress } from "./selectors";
-import { completedMonths, MONEY_DATE_COINS, MONEY_DATE_XP } from "./moneyDate";
 
 export const CARE: Record<CareAction, { label: string; cost: number; effect: string; xp: number }> = {
   food: { label: "Food", cost: 10, effect: "+15 health", xp: 2 },
@@ -44,8 +43,6 @@ export interface PetStatus {
   outfits: number;
   mood: string;
   stagesDone: number;
-  /** Months in which both of you did the money date. */
-  moneyDates: number;
 }
 
 /** Level L needs 100·L XP to reach L+1 (Lv1: 100, Lv2: 200, Lv3: 300...). */
@@ -76,10 +73,6 @@ export function petStatus(s: CoupleState, now: Date = new Date()): PetStatus {
   }
   xp += stagesDone * 50;
   coinsEarned += stagesDone * 25;
-  // A money date done by both of you is worth more than any single contribution.
-  const dates = completedMonths(s);
-  xp += dates.length * MONEY_DATE_XP;
-  coinsEarned += dates.length * MONEY_DATE_COINS;
 
   let coinsSpent = 0;
   for (const c of s.petCare) {
@@ -98,10 +91,8 @@ export function petStatus(s: CoupleState, now: Date = new Date()): PetStatus {
     : clamp(10 * Math.min(careSince("play", 3), 3), 0, 100);
   const health = clamp(55 + 15 * Math.min(careSince("food", 3), 2) + 10 * Math.min(careSince("rest", 2), 1) + (recent(30) ? 5 : 0), 0, 100);
 
-  // Monthly streak: consecutive months in which you did the money date together. Months before your first
-  // money date still count if you contributed, so nobody's existing streak resets when this feature arrives.
-  const firstDate = [...dates].sort()[0];
-  const months = new Set([...dates, ...contributions.map((t) => t.occurred_on.slice(0, 7)).filter((m) => !firstDate || m < firstDate)]);
+  // Monthly streak: consecutive months in which either of you put money in.
+  const months = new Set(contributions.map((t) => t.occurred_on.slice(0, 7)));
   let streakMonths = 0;
   const cursor = new Date(now.getFullYear(), now.getMonth(), 1);
   if (!months.has(key(cursor))) cursor.setMonth(cursor.getMonth() - 1);
@@ -120,7 +111,7 @@ export function petStatus(s: CoupleState, now: Date = new Date()): PetStatus {
     coinsEarned, coinsSpent, coins: coinsEarned - coinsSpent,
     happiness, health, streakMonths,
     outfits: 1 + s.petCare.filter((c) => c.action === "outfit").length,
-    mood, stagesDone, moneyDates: dates.length,
+    mood, stagesDone,
   };
 }
 

@@ -18,11 +18,11 @@ const emit = defineEmits<{ close: []; raise: []; move: [] }>();
       To stay on schedule for {{ pot.name }} you now need <strong>{{ fmt(gap.need) }}/month</strong>, {{ fmt(gap.need - gap.agreed) }} more than you agreed.
     </Notice>
     <div class="mt-5 flex flex-col gap-3">
-      <button type="button" class="cursor-pointer rounded-2xl border border-line bg-white/50 p-4 text-left hover:border-navy" @click="emit('raise')">
+      <button type="button" class="cursor-pointer rounded-2xl border border-line bg-white/5 p-4 text-left hover:border-navy" @click="emit('raise')">
         <div class="font-semibold">Increase monthly savings</div>
         <div class="text-sm text-muted">Propose a new split of {{ fmt(gap.need) }}/month. Your partner approves it.</div>
       </button>
-      <button type="button" class="cursor-pointer rounded-2xl border border-line bg-white/50 p-4 text-left hover:border-navy" @click="emit('move')">
+      <button type="button" class="cursor-pointer rounded-2xl border border-line bg-white/5 p-4 text-left hover:border-navy" @click="emit('move')">
         <div class="font-semibold">Move money from another pot</div>
         <div class="text-sm text-muted">Cover part of the gap now from a pot that can spare it. Needs approval too.</div>
       </button>

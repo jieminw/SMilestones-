@@ -76,6 +76,10 @@ const split = computed(() => (pot.value ? activeSplit(s.value, pot.value.id) : u
 const proposal = computed(() => (pot.value ? pendingSplit(s.value, pot.value.id) : undefined));
 const requests = computed(() => pendingRequests(s.value).filter((r) => r.pot_id === props.id || r.to_pot_id === props.id));
 const by = computed(() => (pot.value ? contributionsBy(s.value, pot.value.id) : {}));
+/** A person's part of the bar, as a percentage of the target. */
+const share = (cents: number) => Math.min((cents / (target.value || 1)) * 100, 100);
+/** Money from anyone else (a parent's gift), shown in grey. */
+const others = computed(() => Math.max(balance.value - s.value.profiles.reduce((a, p) => a + (by.value[p.id] ?? 0), 0), 0));
 const live = computed(() => pot.value?.status === "active" || pot.value?.status === "completed");
 const need = computed(() => (pot.value ? requiredMonthly(s.value, pot.value) : 0));
 const history = computed(() => (pot.value ? potTx(s.value, pot.value.id) : []));
@@ -192,12 +196,17 @@ const badgeLabel = (k: string) => (k === "withdrawal" ? "Withdrawal" : k === "tr
                 <div class="text-sm text-muted">{{ fmt(Math.max(target - balance, 0)) }} to go</div>
               </div>
             </div>
-            <Progress class="mt-4" :value="pct(balance, target)" :height="10" />
+            <!-- one bar, one colour per partner: each grows with what that person has put in -->
+            <div class="mt-4 flex h-2.5 overflow-hidden rounded-full bg-white/10" role="progressbar" :aria-valuenow="Math.min(pct(balance, target), 100)" aria-valuemin="0" aria-valuemax="100">
+              <div v-for="(p, i) in s.profiles" :key="p.id" :class="cx('h-full transition-[width] duration-700', i === 0 ? 'bg-who-a' : 'bg-who-b')" :style="{ width: share(by[p.id] ?? 0) + '%' }" />
+              <div v-if="others > 0" class="h-full bg-faint/60 transition-[width] duration-700" :style="{ width: share(others) + '%' }" />
+            </div>
             <div class="mt-5 flex gap-6">
               <div v-for="(p, i) in s.profiles" :key="p.id" class="flex items-center gap-2.5 text-sm">
                 <Avatar :name="p.display_name" :who="i === 0 ? 'a' : 'b'" :size="28" />
                 <span class="text-muted">{{ firstName(p) }}</span>
                 <span class="tabular font-semibold">{{ fmt(by[p.id] ?? 0) }}</span>
+                <span :class="cx('size-2 rounded-full', i === 0 ? 'bg-who-a' : 'bg-who-b')" />
               </div>
             </div>
           </div>
@@ -207,7 +216,7 @@ const badgeLabel = (k: string) => (k === "withdrawal" ? "Withdrawal" : k === "tr
         <Card v-if="pot.sequential" class="p-7">
           <BtoStepper :pot="pot" />
           <div class="mt-6 flex flex-col gap-3">
-            <div v-for="(x, i) in sp" :key="x.stage.id" :class="cx('rounded-2xl border p-5', x.status === 'current' ? 'border-terra/50 bg-peach-2/60' : 'border-line bg-white/40')">
+            <div v-for="(x, i) in sp" :key="x.stage.id" :class="cx('rounded-2xl border p-5', x.status === 'current' ? 'border-terra/50 bg-peach-2/60' : 'border-line bg-white/5')">
               <div class="flex items-center gap-4">
                 <span :class="cx('flex size-9 shrink-0 items-center justify-center rounded-full font-serif', x.status === 'done' ? 'bg-navy text-white' : x.status === 'current' ? 'bg-terra text-white' : 'bg-surface-2 text-muted')">
                   <Check v-if="x.status === 'done'" :size="17" />

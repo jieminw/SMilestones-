@@ -41,7 +41,6 @@ async function accept() {
 <template>
   <Card class="p-6">
     <RouterLink v-if="showPot" :to="`/pots/${pot.id}`" class="mb-4 flex items-center gap-3 hover:underline">
-      <PotIcon :kind="pot.kind" :size="18" />
       <span class="font-semibold">{{ pot.name }}</span>
       <span class="text-sm text-muted">· {{ fmt(potTarget(s, pot.id)) }} by {{ fmtMonth(pot.target_date) }}</span>
     </RouterLink>

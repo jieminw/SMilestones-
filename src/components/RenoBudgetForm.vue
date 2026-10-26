@@ -82,7 +82,7 @@ const money = (n: number) => fmt(n * 100);
       </li>
     </ol>
 
-    <p v-if="seeded" class="border-b border-line bg-[#fca47c]/15 px-6 py-2.5 text-[13px] text-ink md:px-8">Started from your answers in the guide: home, size, finish and dates. Change anything you like.</p>
+    <p v-if="seeded" class="border-b border-line bg-[#d99573]/15 px-6 py-2.5 text-[13px] text-ink md:px-8">Started from your answers in the guide: home, size, finish and dates. Change anything you like.</p>
     <div class="px-6 py-7 md:px-8">
       <!-- home -->
       <div v-if="current === 'home'">

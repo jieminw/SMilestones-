@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { ArrowRight, Clock, Landmark } from "lucide-vue-next";
+import { ArrowRight, Clock } from "lucide-vue-next";
 import { useCouple } from "@/stores/app";
 import type { ApprovalRequest } from "@/domain/types";
 import { fmt } from "@/domain/money";
@@ -63,16 +63,12 @@ async function reject() {
     </div>
     <div class="mt-4 flex items-center gap-3 text-sm">
       <div class="flex-1 rounded-2xl bg-surface-2 p-3.5">
-        <div class="flex items-center gap-2 font-medium"><PotIcon :kind="from.kind" :size="15" />{{ from.name }}</div>
+        <div class="font-medium">{{ from.name }}</div>
         <div class="tabular mt-1 text-muted">{{ fmt(bal) }} → <span class="font-semibold text-ink">{{ fmt(bal - request.amount) }}</span></div>
       </div>
       <ArrowRight :size="18" class="text-faint" />
       <div class="flex-1 rounded-2xl bg-surface-2 p-3.5">
-        <div class="flex items-center gap-2 font-medium">
-          <PotIcon v-if="to" :kind="to.kind" :size="15" />
-          <Landmark v-else :size="15" />
-          {{ to ? to.name : "Joint account" }}
-        </div>
+        <div class="font-medium">{{ to ? to.name : "Joint account" }}</div>
         <div class="tabular mt-1 text-muted">
           <template v-if="to">{{ fmt(potBalance(s, to.id)) }} → <span class="font-semibold text-ink">{{ fmt(potBalance(s, to.id) + request.amount) }}</span></template>
           <template v-else>Outside SMilestones</template>

@@ -83,7 +83,7 @@ function setRaw(id: string, v: string) {
       <div class="h-full bg-terra transition-[width]" :style="{ width: pcts[0] + '%' }" />
     </div>
     <div class="mt-4 grid grid-cols-2 gap-4">
-      <div v-for="(p, i) in [a, b]" :key="p.id" class="rounded-2xl border border-line bg-white/50 p-4">
+      <div v-for="(p, i) in [a, b]" :key="p.id" class="rounded-2xl border border-line bg-white/5 p-4">
         <div class="flex items-center gap-2.5">
           <Avatar :name="p.display_name" :who="i === 0 ? 'a' : 'b'" :size="30" />
           <span class="truncate font-medium whitespace-nowrap">{{ firstName(p) }}{{ p.id === meId ? " (you)" : "" }}</span>

@@ -23,7 +23,7 @@ watch(
 <template>
   <Teleport to="body">
     <div v-if="open" class="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div class="anim-fade absolute inset-0 bg-ink/45 backdrop-blur-[2px]" @click="emit('close')" />
+      <div class="anim-fade absolute inset-0 bg-black/50 backdrop-blur-[2px]" @click="emit('close')" />
       <div
         ref="dialog"
         tabindex="-1"

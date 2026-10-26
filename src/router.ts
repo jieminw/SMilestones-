@@ -25,7 +25,6 @@ const router = createRouter({
       children: [
         { path: "home", component: () => import("@/views/HomeView.vue") },
         { path: "navigator", component: () => import("@/views/NavigatorView.vue") },
-        { path: "money-date", component: () => import("@/views/MoneyDateView.vue") },
         { path: "timeline", component: () => import("@/views/TimelineView.vue") },
         { path: "wedding", component: () => import("@/views/WeddingView.vue") },
         { path: "renovation", component: () => import("@/views/RenovationView.vue") },

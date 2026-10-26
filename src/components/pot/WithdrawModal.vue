@@ -83,7 +83,7 @@ async function submit() {
         :key="o.m"
         type="button"
         :disabled="o.disabled"
-        class="flex cursor-pointer items-center gap-4 rounded-2xl border border-line bg-white/50 p-4 text-left hover:border-navy disabled:cursor-not-allowed disabled:opacity-50"
+        class="flex cursor-pointer items-center gap-4 rounded-2xl border border-line bg-white/5 p-4 text-left hover:border-navy disabled:cursor-not-allowed disabled:opacity-50"
         @click="choose(o.m)"
       >
         <span class="flex size-11 items-center justify-center rounded-2xl bg-surface-2"><component :is="o.icon" :size="20" /></span>

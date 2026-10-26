@@ -67,7 +67,7 @@ async function submit() {
         </Field>
       </div>
       <label class="flex cursor-pointer items-start gap-3 rounded-2xl bg-surface-2 p-4 text-sm">
-        <input v-model="moved" type="checkbox" class="mt-0.5 size-4 accent-[#06363c]" />
+        <input v-model="moved" type="checkbox" class="mt-0.5 size-4 accent-[#1d1e1f]" />
         <span>
           <span class="font-medium text-ink">I've moved this money into our savings account</span>
           <span class="block text-muted">SMilestones records it; it doesn't move money for you.</span>

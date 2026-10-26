@@ -6,7 +6,7 @@ import { guideState as g } from "@/stores/renoGuideState";
 import { cx } from "@/lib/cx";
 
 /** A house cut into slices, one per line of the works. Pick a flat and a finish, tap a slice or a line to read about it. */
-const COLOURS = ["#06363c", "#097c87", "#fca47c", "#0a5059", "#f9d779", "#23ced9", "#a1cca6", "#fdd9c6", "#06606a", "#08464d"];
+const COLOURS = ["#1d1e1f", "#d08a54", "#d99573", "#2f3132", "#e3c476", "#86aeb4", "#a9c0a0", "#fdd9c6", "#3a3b3c", "#08464d"];
 
 const lines = computed(() => {
   const items = renoItemsFor(g.home).filter((i) => i.share);
@@ -37,12 +37,12 @@ const PILL = "cursor-pointer rounded-full border px-3 py-1 text-[12px] font-semi
 <template>
   <div class="flex min-h-0 flex-1 flex-col">
     <div class="flex flex-wrap gap-1.5">
-      <button v-for="h in HOMES" :key="h.id" type="button" :aria-pressed="g.home === h.id" :class="cx(PILL, g.home === h.id ? 'border-[#06363c] bg-[#06363c] text-white' : 'border-[#06363c]/30 hover:border-[#06363c]')" @click="g.home = h.id">{{ h.label }}</button>
-      <span class="mx-1 w-px bg-[#06363c]/20" />
-      <button v-for="n in SIZES" :key="n" type="button" :aria-pressed="g.rooms === n" :class="cx(PILL, g.rooms === n ? 'border-[#06363c] bg-[#06363c] text-white' : 'border-[#06363c]/30 hover:border-[#06363c]')" @click="g.rooms = n">{{ n }}-room</button>
+      <button v-for="h in HOMES" :key="h.id" type="button" :aria-pressed="g.home === h.id" :class="cx(PILL, g.home === h.id ? 'border-[#1d1e1f] bg-[#1d1e1f] text-white' : 'border-[#1d1e1f]/30 hover:border-[#1d1e1f]')" @click="g.home = h.id">{{ h.label }}</button>
+      <span class="mx-1 w-px bg-[#1d1e1f]/20" />
+      <button v-for="n in SIZES" :key="n" type="button" :aria-pressed="g.rooms === n" :class="cx(PILL, g.rooms === n ? 'border-[#1d1e1f] bg-[#1d1e1f] text-white' : 'border-[#1d1e1f]/30 hover:border-[#1d1e1f]')" @click="g.rooms = n">{{ n }}-room</button>
     </div>
     <div class="mt-1.5 flex flex-wrap gap-1.5">
-      <button v-for="f in FINISHES" :key="f" type="button" :aria-pressed="g.finish === f" :class="cx(PILL, g.finish === f ? 'border-[#097c87] bg-[#097c87] text-white' : 'border-[#097c87]/40 text-[#097c87] hover:border-[#097c87]')" @click="g.finish = f">{{ FINISH_LABEL[f] }}</button>
+      <button v-for="f in FINISHES" :key="f" type="button" :aria-pressed="g.finish === f" :class="cx(PILL, g.finish === f ? 'border-[#d08a54] bg-[#d08a54] text-white' : 'border-[#d08a54]/40 text-[#d08a54] hover:border-[#d08a54]')" @click="g.finish = f">{{ FINISH_LABEL[f] }}</button>
     </div>
 
     <div class="mt-3 grid min-h-0 grid-cols-[150px_minmax(0,1fr)] items-start gap-4">
@@ -52,14 +52,14 @@ const PILL = "cursor-pointer rounded-full border px-3 py-1 text-[12px] font-semi
           <g clip-path="url(#house-clip)">
             <rect v-for="r in lines.rows" :key="r.id" x="0" :y="r.y" width="200" :height="r.h + 0.5" :fill="r.colour" :opacity="picked && picked !== r.id ? 0.3 : 1" class="cursor-pointer transition-opacity" @click="toggle(r.id)" />
           </g>
-          <path d="M100 8 L194 80 V182 H6 V80 Z" fill="none" stroke="#06363c" stroke-width="2" stroke-linejoin="round" />
+          <path d="M100 8 L194 80 V182 H6 V80 Z" fill="none" stroke="#1d1e1f" stroke-width="2" stroke-linejoin="round" />
         </svg>
         <p class="mt-1 font-serif text-[24px] leading-none font-semibold">{{ fmt(lines.total * 100) }}</p>
         <p class="text-[11px] text-[#48767c]">for the works</p>
       </div>
       <ul class="flex flex-col">
         <li v-for="r in lines.rows" :key="r.id">
-          <button type="button" :aria-pressed="picked === r.id" :class="cx('flex w-full cursor-pointer items-center gap-2 rounded px-1.5 py-[3px] text-left transition-colors', picked === r.id ? 'bg-[#fca47c]/40' : 'hover:bg-[#fca47c]/20')" @click="toggle(r.id)">
+          <button type="button" :aria-pressed="picked === r.id" :class="cx('flex w-full cursor-pointer items-center gap-2 rounded px-1.5 py-[3px] text-left transition-colors', picked === r.id ? 'bg-[#d99573]/40' : 'hover:bg-[#d99573]/20')" @click="toggle(r.id)">
             <span class="size-2.5 shrink-0 rounded-sm" :style="{ background: r.colour }" />
             <span class="min-w-0 flex-1 truncate text-[12px] font-medium">{{ r.name }}</span>
             <span class="font-serif text-[13px] tabular-nums">{{ fmt(r.dollars * 100) }}</span>
@@ -70,9 +70,9 @@ const PILL = "cursor-pointer rounded-full border px-3 py-1 text-[12px] font-semi
     </div>
 
     <p class="mt-3 min-h-[34px] text-[12px] leading-snug text-[#48767c]">
-      <template v-if="current"><span class="font-semibold text-[#06363c]">{{ current.name }}.</span> {{ current.hint }}.</template>
+      <template v-if="current"><span class="font-semibold text-[#1d1e1f]">{{ current.name }}.</span> {{ current.hint }}.</template>
       <template v-else>Tap a slice or a line. Furniture, appliances and air-conditioning are extra, and a resale flat adds hacking.</template>
     </p>
-    <RouterLink to="/pots/new?kind=renovation&from=renovation" class="mt-2 self-start text-[12.5px] font-semibold text-[#097c87] underline underline-offset-4 hover:text-[#06363c]">Fine-tune these in your plan →</RouterLink>
+    <RouterLink to="/pots/new?kind=renovation&from=renovation" class="mt-2 self-start text-[12.5px] font-semibold text-[#d08a54] underline underline-offset-4 hover:text-[#1d1e1f]">Fine-tune these in your plan →</RouterLink>
   </div>
 </template>

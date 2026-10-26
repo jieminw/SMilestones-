@@ -222,16 +222,6 @@ export interface PotMember {
   created_at: string;
 }
 
-/** One month's money date. Both partners' ids appear in completed_by once they have each marked it done. */
-export interface MoneyDate {
-  id: string;
-  couple_id: string;
-  /** First day of the month. */
-  month: string;
-  completed_by: string[];
-  created_at: string;
-}
-
 export interface CoupleState {
   couple: Couple;
   profiles: Profile[];
@@ -245,10 +235,9 @@ export interface CoupleState {
   btoApplications: BtoApplication[];
   covers: Cover[];
   potMembers: PotMember[];
-  moneyDates: MoneyDate[];
 }
 
-export type TableName = "couples" | "profiles" | "pots" | "stages" | "proposals" | "transactions" | "requests" | "pet_care" | "notifications" | "bto_applications" | "covers" | "pot_members" | "money_dates";
+export type TableName = "couples" | "profiles" | "pots" | "stages" | "proposals" | "transactions" | "requests" | "pet_care" | "notifications" | "bto_applications" | "covers" | "pot_members";
 
 export const STATE_KEY: Record<TableName, keyof CoupleState> = {
   couples: "couple",
@@ -263,7 +252,6 @@ export const STATE_KEY: Record<TableName, keyof CoupleState> = {
   bto_applications: "btoApplications",
   covers: "covers",
   pot_members: "potMembers",
-  money_dates: "moneyDates",
 };
 
 /** A change the engine wants persisted. Stores apply these atomically. */

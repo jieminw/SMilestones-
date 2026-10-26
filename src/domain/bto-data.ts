@@ -130,6 +130,13 @@ export const getProject = (id: string) => BTO_PROJECTS.find((p) => p.id === id);
 export const TOWNS = Array.from(new Set(BTO_PROJECTS.map((p) => p.town))).sort();
 
 /** Upcoming exercise announced on HDB Flat Portal (prices not yet released). */
+/** Artist's impressions published by HDB, saved as public/images/bto/<project id>.jpg. Projects without one fall back to an illustration. */
+export const BTO_PHOTO_IDS = new Set([
+  "woodgrove-acres", "sembawang-portico", "sembawang-brook", "kebun-baru-ridge", "kebun-baru-breeze", "lakeview-cascadia", "berlayar-rise",
+  "sembawang-voyage", "sembawang-deck", "tampines-bliss", "tampines-nova", "kim-keat-crest", "redhill-peaks",
+]);
+export const btoPhoto = (id: string) => (BTO_PHOTO_IDS.has(id) ? `/images/bto/${id}.jpg` : null);
+
 export const UPCOMING_EXERCISE = {
   label: "Nov 2026",
   flats: 7960,

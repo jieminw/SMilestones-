@@ -16,26 +16,26 @@ const picks = computed(() => g.picks.map((id) => PRIORITIES.find((p) => p.id ===
 
 <template>
   <div class="flex min-h-0 flex-1 flex-col overflow-y-auto pr-1">
-    <p class="text-[11px] font-semibold tracking-wide text-[#097c87] uppercase">Made for you</p>
+    <p class="text-[11px] font-semibold tracking-wide text-[#d08a54] uppercase">Made for you</p>
     <p class="font-serif text-[24px] leading-tight font-semibold">{{ g.rooms }}-room {{ homeNoun(g.home) }}, {{ FINISH_LABEL[g.finish].toLowerCase() }} finish</p>
 
-    <div class="mt-3 border-y-2 border-[#06363c] py-3">
+    <div class="mt-3 border-y-2 border-[#1d1e1f] py-3">
       <p class="font-serif text-[34px] leading-none font-semibold">{{ fmt(works * 100) }}</p>
       <p class="mt-1 text-[12px] text-[#48767c]">for the works. Furniture, appliances and air-con add about {{ fmt(extras * 100) }}.</p>
     </div>
 
-    <p class="mt-3 text-[11px] font-semibold tracking-wide text-[#097c87] uppercase">Where most of it goes</p>
+    <p class="mt-3 text-[11px] font-semibold tracking-wide text-[#d08a54] uppercase">Where most of it goes</p>
     <ol class="mt-1.5 flex flex-col gap-1.5">
-      <li v-for="(t, i) in top" :key="t.name" class="flex items-baseline gap-3"><span class="font-serif w-4 text-[18px] text-[#097c87]">{{ i + 1 }}</span><span class="flex-1 text-[13px] font-medium">{{ t.name }}</span><span class="font-serif text-[15px]">{{ fmt(t.dollars * 100) }}</span></li>
+      <li v-for="(t, i) in top" :key="t.name" class="flex items-baseline gap-3"><span class="font-serif w-4 text-[18px] text-[#d08a54]">{{ i + 1 }}</span><span class="flex-1 text-[13px] font-medium">{{ t.name }}</span><span class="font-serif text-[15px]">{{ fmt(t.dollars * 100) }}</span></li>
     </ol>
 
-    <p class="mt-3 text-[11px] font-semibold tracking-wide text-[#097c87] uppercase">What matters to you</p>
-    <ul v-if="picks.length" class="mt-1.5 flex flex-wrap gap-1"><li v-for="p in picks" :key="p" class="rounded-full bg-[#fca47c] px-2.5 py-0.5 text-[11.5px] font-semibold">{{ p }}</li></ul>
+    <p class="mt-3 text-[11px] font-semibold tracking-wide text-[#d08a54] uppercase">What matters to you</p>
+    <ul v-if="picks.length" class="mt-1.5 flex flex-wrap gap-1"><li v-for="p in picks" :key="p" class="rounded-full bg-[#d99573] px-2.5 py-0.5 text-[11.5px] font-semibold">{{ p }}</li></ul>
     <p v-else class="mt-1.5 text-[12px] text-[#48767c]">You skipped this. Add your priorities to see where to spend and where to save.</p>
 
     <div class="mt-auto flex shrink-0 items-center justify-between gap-3 pt-4">
-      <button type="button" class="cursor-pointer text-[12.5px] font-semibold text-[#097c87] underline underline-offset-4 hover:text-[#06363c]" @click="$emit('change')">Change my answers</button>
-      <RouterLink to="/pots/new?kind=renovation&from=renovation" class="inline-flex items-center gap-2 bg-[#06363c] px-5 py-3 text-[10.5px] font-medium tracking-[0.22em] text-[#e4f4f3] uppercase transition-colors hover:bg-[#097c87]">Plan it <span aria-hidden="true">→</span></RouterLink>
+      <button type="button" class="cursor-pointer text-[12.5px] font-semibold text-[#d08a54] underline underline-offset-4 hover:text-[#1d1e1f]" @click="$emit('change')">Change my answers</button>
+      <RouterLink to="/pots/new?kind=renovation&from=renovation" class="inline-flex items-center gap-2 bg-[#1d1e1f] px-5 py-3 text-[10.5px] font-medium tracking-[0.22em] text-[#e6e2da] uppercase transition-colors hover:bg-[#d08a54]">Plan it <span aria-hidden="true">→</span></RouterLink>
     </div>
   </div>
 </template>

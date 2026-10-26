@@ -27,7 +27,7 @@ onBeforeUnmount(() => clearInterval(t));
       </div>
     </Transition>
     <div class="mt-6 flex gap-2">
-      <button v-for="(_, n) in QUOTES" :key="n" type="button" :aria-label="`Quote ${n + 1}`" :class="['h-1 cursor-pointer rounded-full transition-all', n === i ? 'w-8 bg-terra' : tone === 'dark' ? 'w-4 bg-white/40' : 'w-4 bg-ink/20']" @click="i = n" />
+      <button v-for="(_, n) in QUOTES" :key="n" type="button" :aria-label="`Quote ${n + 1}`" :class="['h-1 cursor-pointer rounded-full transition-all', n === i ? 'w-8 bg-terra' : tone === 'dark' ? 'w-4 bg-white/5' : 'w-4 bg-ink/20']" @click="i = n" />
     </div>
   </figure>
 </template>

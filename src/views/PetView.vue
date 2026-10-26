@@ -88,7 +88,7 @@ async function rename() {
 
         <!-- Room -->
         <Card class="relative overflow-hidden p-0">
-          <div class="relative h-[460px]" style="background: repeating-linear-gradient(90deg, #e8f6f6 0 22px, #f1e2cd 22px 44px)">
+          <div class="relative h-[460px]" style="background: repeating-linear-gradient(90deg, #363637 0 22px, #f1e2cd 22px 44px)">
             <div class="absolute top-8 left-8 rounded-xl border-2 border-[#b85a30] bg-[#e0764a] px-5 py-2.5 text-center text-white shadow-md">
               <div class="font-serif text-xl">{{ pet.name }}'s room</div>
               <div class="text-xs text-white/80">{{ s.couple.name }}</div>
@@ -96,7 +96,7 @@ async function rename() {
             <div class="absolute top-10 right-12 h-[120px] w-[96px] rounded-t-[48px] border-[6px] border-[#e0764a] bg-gradient-to-b from-[#f2c7a5] to-[#e7a283]">
               <div class="absolute inset-x-0 top-1/2 h-1 bg-[#e0764a]" />
               <div class="absolute inset-y-0 left-1/2 w-1 bg-[#e0764a]" />
-              <div class="absolute top-4 right-4 size-6 rounded-full bg-[#f4895a]" />
+              <div class="absolute top-4 right-4 size-6 rounded-full bg-[#e8906a]" />
             </div>
             <div class="absolute bottom-0 h-[110px] w-full bg-[#f6965f]" style="background: repeating-linear-gradient(0deg, #f6965f 0 26px, #bd8d66 26px 28px)" />
             <div class="absolute bottom-6 left-1/2 h-12 w-[360px] -translate-x-1/2 rounded-[50%] bg-[#e0764a]/85" />

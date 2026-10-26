@@ -17,7 +17,7 @@ export const DEMO_MUM = "demo-mum";
 export function emptyState(coupleId: string, profiles: Profile[], name: string, now = new Date()): CoupleState {
   return {
     couple: { id: coupleId, name, pet_name: "Fluffy", version: 1, created_at: now.toISOString() },
-    profiles, pots: [], stages: [], proposals: [], transactions: [], requests: [], petCare: [], notifications: [], btoApplications: [], covers: [], potMembers: [], moneyDates: [],
+    profiles, pots: [], stages: [], proposals: [], transactions: [], requests: [], petCare: [], notifications: [], btoApplications: [], covers: [], potMembers: [],
   };
 }
 
@@ -134,10 +134,6 @@ export function createDemoState(now = new Date()): CoupleState {
 
   // ---- Julian asks to move $200 from the trip to the BTO pot
   exec(DEMO_JULIAN, new Date(now.getTime() - 2 * 3600_000), { type: "requestTransfer", fromPotId: trip, toPotId: bto, amount: dollars(200), reason: "Topping up the option fee buffer" });
-
-  // ---- Money date (sample data): last month's check-in was done together, this month's is still to do.
-  exec(DEMO_DEPHANY, monthsAgo(1, 28), { type: "completeMoneyDate" });
-  exec(DEMO_JULIAN, monthsAgo(1, 29), { type: "completeMoneyDate" });
 
   // ---- Statement check (sample data): Dephany has confirmed her earlier BTO transfers against her bank statement.
   const checked = s.transactions.filter((t) => t.user_id === DEMO_DEPHANY && t.pot_id === bto && t.kind === "contribution" && t.occurred_on < toISODate(monthsAgo(0, 1))).map((t) => t.id);

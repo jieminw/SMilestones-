@@ -7,7 +7,7 @@
  */
 import type {
   ApprovalRequest, CareAction, PetCare, CoupleState, Mutation, Notification, Pot, PotKind, SplitMode,
-  SplitProposal, Stage, TableName, Transaction, BtoMeta, WeddingMeta, ApplicationResult, BtoApplication, Cover, MoneyDate,
+  SplitProposal, Stage, TableName, Transaction, BtoMeta, WeddingMeta, ApplicationResult, BtoApplication, Cover,
 } from "./types";
 import { COVER_MONTHS_MAX, COVER_MONTHS_MIN, creditedIn, monthKey, shortfallIn } from "./covers";
 import type { FlatTypeId } from "./bto-data";
@@ -47,7 +47,6 @@ export type Command =
   | { type: "logApplication"; potId: string; exercise: string; project_id: string | null; flat_type: FlatTypeId; applied_on: string; result: ApplicationResult; queue_number: number | null }
   | { type: "updateApplication"; applicationId: string; result: ApplicationResult; queue_number: number | null }
   | { type: "markVerified"; txIds: string[] }
-  | { type: "completeMoneyDate" }
   | { type: "proposeCover"; potId: string; month: string; amount: Cents; months: number }
   | { type: "respondCover"; coverId: string; accept: boolean; note?: string }
   | { type: "cancelCover"; coverId: string }
@@ -253,23 +252,6 @@ export function run(s: CoupleState, cmd: Command, ctx: Ctx): RunResult {
       update("bto_applications", a.id, { result: cmd.result, queue_number: cmd.queue_number });
       return { mutations: m };
     }
-    // ----------------------------------------------------------- monthly money date
-    case "completeMoneyDate": {
-      const other = requirePartner();
-      const month = nowIso.slice(0, 7);
-      const existing = s.moneyDates.find((x) => x.month.slice(0, 7) === month);
-      if (existing?.completed_by.includes(me)) throw new DomainError("You've already done this month's money date.");
-      if (existing) {
-        update("money_dates", existing.id, { completed_by: [...existing.completed_by, me] });
-        if (existing.completed_by.includes(other.id)) notify(`${myName} finished the money date. That's ${firstName(other)} and you, together. Fluffy is delighted.`, "/money-date");
-      } else {
-        const row: MoneyDate = { id: ctx.newId(), couple_id: s.couple.id, month: month + "-01", completed_by: [me], created_at: nowIso };
-        insert("money_dates", row);
-        notify(`${myName} did this month's money date. Your turn when you're ready.`, "/money-date");
-      }
-      return { mutations: m };
-    }
-
     // ----------------------------------------------------------- bank statement check
     case "markVerified": {
       if (!cmd.txIds.length) throw new DomainError("Nothing to verify.");
