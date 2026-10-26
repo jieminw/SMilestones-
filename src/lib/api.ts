@@ -24,6 +24,23 @@ export async function fetchSnapshot(): Promise<Snapshot | null> {
   const r = await call<{ ok: boolean; snapshot?: Snapshot | null }>("snapshot", "GET");
   return r.ok ? (r.snapshot ?? null) : null;
 }
+/** For the login screen: why the workspace could not be loaded, in a few words. */
+export async function snapshotProblem(): Promise<string> {
+  const { data } = await supabase().auth.getSession();
+  try {
+    const res = await fetch("/api/snapshot", { headers: { authorization: `Bearer ${data.session?.access_token ?? ""}` } });
+    const text = await res.text();
+    try {
+      const j = JSON.parse(text) as { ok?: boolean; error?: string; code?: string };
+      if (j.ok) return "The server answered, but there is no workspace for this account yet.";
+      return `${j.error ?? "Unknown error"}${j.code ? ` (${j.code})` : ""}`;
+    } catch {
+      return `The server replied with HTTP ${res.status}, not JSON. The function may have crashed on start.`;
+    }
+  } catch {
+    return "Could not reach the server at all.";
+  }
+}
 export const runCommandAction = (cmd: Command) => call<CommandResult>("command", "POST", { cmd });
 export const createInviteAction = () => call<Simple<{ code: string; expires_at: string }>>("invite", "POST", {});
 export const joinInviteAction = (code: string) => call<Simple<{ kind: "couple" | "pot" }>>("join", "POST", { code });

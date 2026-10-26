@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { cloudEnabled } from "@/lib/config";
+import { snapshotProblem } from "@/lib/api";
 import { supabase } from "@/lib/supabase";
 import { inputCls } from "@/lib/cx";
 import { useApp } from "@/stores/app";
@@ -48,7 +49,7 @@ async function submit() {
   busy.value = true;
   const ok = await app.boot();
   busy.value = false;
-  if (!ok) return void (error.value = "You're signed in, but the app couldn't load your workspace. The server part (the api/ folder) isn't reachable. Run it with \"vercel dev\", or use the deployed site.");
+  if (!ok) return void (error.value = `You're signed in, but the app couldn't load your workspace. Reason: ${await snapshotProblem()}`);
   await router.push("/home");
 }
 

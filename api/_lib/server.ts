@@ -49,7 +49,9 @@ export function route(method: "GET" | "POST", fn: (req: VercelRequest, uid: stri
     } catch (e) {
       if (e instanceof DomainError) return res.status(200).json({ ok: false, error: e.message });
       console.error(e);
-      return res.status(200).json({ ok: false, error: "Something went wrong on our side. Please try again." });
+      // a short code (like ENOTFOUND or 28P01) helps find the cause without exposing details such as hostnames or passwords
+      const code = (e as { code?: unknown }).code;
+      return res.status(200).json({ ok: false, error: "Something went wrong on our side. Please try again.", code: typeof code === "string" ? code : (e as Error).name });
     }
   };
 }
