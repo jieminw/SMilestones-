@@ -66,8 +66,8 @@ function tryDemo() {
     </RouterLink>
     <div class="w-full max-w-[420px]">
       <Card v-if="!cloudEnabled" class="p-8 text-center">
-        <h1 class="text-xl font-semibold">Accounts aren't set up yet</h1>
-        <p class="mt-2 text-muted">Add your Supabase keys to <code>.env.local</code> to enable sign-up. Meanwhile, the demo has everything.</p>
+        <h1 class="text-xl font-semibold">Accounts are switched off for now</h1>
+        <p class="mt-2 text-muted">This version runs as a demo with sample data. Everything in the app works in the demo.</p>
         <Button class="mt-6 w-full" @click="tryDemo">Try the demo</Button>
       </Card>
 
